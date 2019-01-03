@@ -39,3 +39,4 @@ build
 out
 trash
 cmake-build*
+.png

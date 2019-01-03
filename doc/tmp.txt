@@ -1,0 +1,102 @@
+@startuml
+set namespaceSeparator ::
+
+class Seed
+{
+	-data :: int / long / ???
+	+genNext()
+}
+
+interface MapGenerator::IMapGenerator
+{
+	-ITerrainGenerator
+	-IItemGenerator
+	-IMobGenerator
+
+	+generate(Seed)
+}
+
+interface MapGenerator::ITerrainGenerator
+{
+	+generate(Seed)
+}
+
+interface MapGenerator::IItemsGenerator
+{
+	+generate(Seed, Terrain)
+}
+
+interface MapGenerator::IMobsGenerator
+{
+	+generate(Seed, Terrain, Items)
+}
+
+
+MapGenerator::IMapGenerator o-- MapGenerator::ITerrainGenerator
+MapGenerator::IMapGenerator o-- MapGenerator::IItemsGenerator
+MapGenerator::IMapGenerator o-- MapGenerator::IMobsGenerator
+
+class Menu...
+{
+	-Engine
+	==
+	shows menu, walking around menu 
+	+init()
+	--
+	-startGame()
+}
+
+class Engine
+{
+	-Map
+}
+
+class Map
+{
+	-Terrain
+	-Items :: list<Item>
+	-Mobs :: list<Mob>
+	-Player
+
+	+makeMove(who, where)
+}
+
+class Entity
+{
+	-id
+	-position
+}
+
+class Item
+{
+	...
+}
+
+Entity <|-- Item 
+
+class Character
+{
+	-attack
+	-HP
+
+	+generateMove(Map)
+}
+Entity <|-- Character
+Character <|-- Mob
+Character <|-- Player
+
+enum Field
+
+
+class Terrain
+{
+	-fields :: Field[][]
+}
+ Terrain o-- Field
+
+
+
+@enduml
+
+
+
