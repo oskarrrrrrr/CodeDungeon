@@ -31,6 +31,9 @@
 *.out
 *.app
 
+# Docs
+*.png
+
 # Others
 .idea
 .vscode
@@ -39,4 +42,3 @@ build
 out
 trash
 cmake-build*
-.png
