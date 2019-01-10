@@ -9,9 +9,11 @@ add_library(${PROJECT_NAME} ${${PROJECT_NAME}src_files}
         MapGenerator/IMapGenerator/IMonsterGenerator.cpp
         MapGenerator/IMapGenerator/ITerrainGenerator.cpp
 
+        MapGenerator/Creature.cpp
         MapGenerator/Item.cpp
         MapGenerator/Map.cpp
         MapGenerator/Monster.cpp
+        MapGenerator/Player.cpp
         MapGenerator/Terrain.cpp
 )
 
