@@ -11,7 +11,7 @@
 class IMapGenerator
 {
 public:
-	Map generate(Seed s);
+	Map generate(Seed& s);
 
 private:
     IItemGenerator itemGenerator_;

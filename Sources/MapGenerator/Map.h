@@ -14,15 +14,13 @@ class Map
 {
 public:
 	std::list<Monster>& monsters();
-	Player& player();
 
-	void makeMove(Move m);
+	void makeMove(Creature& who, Move what);
 
 private:
     Terrain terrain_;
     std::list<Monster> monsters_;
     std::list<Item> items_;
-    Player player_;
 };
 
 
