@@ -35,8 +35,9 @@ void Engine::gameStart()
                 map.makeMove(mob, m);
             }
 
-            //TODO show
+//            TODO show
             std::this_thread::sleep_until(beginTime + std::chrono::milliseconds(roundTime));
         }
     }
+//    TODO show end screen?
 }
