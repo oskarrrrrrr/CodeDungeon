@@ -9,5 +9,4 @@ enum Field
     Stairs
 };
 
-
 #endif //CODEDUNGEON_FIELD_H

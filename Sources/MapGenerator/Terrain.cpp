@@ -1,3 +1,4 @@
+#include <sstream>
 #include <stdexcept>
 
 #include <MapGenerator/Terrain.h>
@@ -56,4 +57,36 @@ void Terrain::setStairs(int row, int column)
         throw std::logic_error("Stairs has been already set");
     (*this)(row, column) = Field::Stairs;
     isStairs_ = true;
+}
+
+
+
+
+
+char fieldToChar(const Field& f)
+{
+    switch (f)
+    {
+        case Field::Wall:
+            return '#';
+        case Field::Ground:
+            return '-';
+        case Field::Spawn:
+            return 'O';
+        case Field::Stairs:
+            return 'V';
+    }
+}
+
+
+std::string Terrain::toString() const
+{
+    std::ostringstream res;
+    for (int r = 0; r < height_; r++)
+    {
+        for (int c = 0; c < width_; c++)
+            res << fieldToChar((*this)(r, c));
+        res << "\n";
+    }
+    return res.str();
 }

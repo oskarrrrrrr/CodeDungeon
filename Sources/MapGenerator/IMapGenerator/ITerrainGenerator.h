@@ -1,10 +1,13 @@
 #ifndef CODEDUNGEON_ITERRAINGENERATOR_H
 #define CODEDUNGEON_ITERRAINGENERATOR_H
 
+#include <MapGenerator/Seed.h>
+#include <MapGenerator/Terrain.h>
 
 class ITerrainGenerator
 {
-
+public:
+	virtual Terrain generate(Seed s);
 };
 
 

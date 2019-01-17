@@ -1,6 +1,7 @@
 #ifndef CODEDUNGEON_TERRAIN_H
 #define CODEDUNGEON_TERRAIN_H
 
+#include <string>
 #include <vector>
 
 #include <MapGenerator/Field.h>
@@ -31,6 +32,9 @@ public:
     void addCorridor(int beginningRow, int beginningColumn, int length, bool isHorizontal);
     void setSpawn(int row, int column);
     void setStairs(int row, int column);
+
+
+    std::string toString() const;
 
 private:
     Field& operator()(int row, int column);
