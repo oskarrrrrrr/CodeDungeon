@@ -8,18 +8,21 @@
 #include <MapGenerator/Map.h>
 #include <MapGenerator/Seed.h>
 
+#include <memory>
+#include <utility>
+
 class Engine
 {
 public:
-    Engine(IMapGenerator& gen)
-    : gen_(gen)
+    Engine(std::unique_ptr<IMapGenerator>& gen)
+    : gen_(std::move(gen))
     {}
 
     void gameInit(Seed seed);
     void gameStart();
 
 private:
-    IMapGenerator gen_;
+    std::unique_ptr<IMapGenerator> gen_;
     Seed seed_;
     Player player_;
 

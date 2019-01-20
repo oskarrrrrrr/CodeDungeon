@@ -15,7 +15,7 @@ void Engine::gameStart()
 {
     for (int floor = 0; floor < maxFloors; floor++)
     {
-        Map map = gen_.generate(seed_);
+        Map map = gen_->generate(seed_);
         bool nextFloor = false;
         while(player_.isAllive() && !nextFloor)
         {

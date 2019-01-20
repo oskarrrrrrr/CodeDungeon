@@ -8,15 +8,18 @@
 #include <MapGenerator/Map.h>
 #include <MapGenerator/Seed.h>
 
+#include <memory>
+
+
 class IMapGenerator
 {
 public:
 	Map generate(Seed& s);
 
 private:
-    IItemGenerator itemGenerator_;
-    IMonsterGenerator monsterGenerator_;
-    ITerrainGenerator terrainGenerator_;
+  std::unique_ptr<IItemGenerator> itemGenerator_;
+  std::unique_ptr<IMonsterGenerator> monsterGenerator_;
+  std::unique_ptr<ITerrainGenerator> terrainGenerator_;
 };
 
 
