@@ -15,7 +15,7 @@ class Map
 public:
 	std::list<Monster>& monsters();
 
-	void makeMove(Creature& who, Move what);
+	void makeAction(Creature& who, Action what);
 
 private:
     Terrain terrain_;

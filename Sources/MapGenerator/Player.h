@@ -2,7 +2,7 @@
 #define CODEDUNGEON_PLAYER_H
 
 #include <MapGenerator/Creature.h>
-#include <MapGenerator/Move.h>
+#include <MapGenerator/Action.h>
 
 class Player : public Creature
 {

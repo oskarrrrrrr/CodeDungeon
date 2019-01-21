@@ -3,7 +3,7 @@
 
 #include <Engine.h>
 
-#include <MapGenerator/Move.h>
+#include <MapGenerator/Action.h>
 
 void Engine::gameInit(Seed seed)
 {
@@ -20,7 +20,7 @@ void Engine::gameStart()
         while(player_.isAllive() && !nextFloor)
         {
             auto beginTime = std::chrono::high_resolution_clock::now();
-            Move m = player_.genMove(map);
+            Action m = player_.genAction(map);
 
 //            TODO if (m == goNextFloor)
 //            {
@@ -28,11 +28,11 @@ void Engine::gameStart()
 //                continue;
 //            }
 
-            map.makeMove(player_, m);
+            map.makeAction(player_, m);
             for (auto& mob : map.monsters())
             {
-                Move m = mob.genMove(map);
-                map.makeMove(mob, m);
+                Action m = mob.genAction(map);
+                map.makeAction(mob, m);
             }
 
 //            TODO show

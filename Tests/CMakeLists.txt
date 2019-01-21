@@ -12,7 +12,7 @@ aux_source_directory(./test_cases test_cases)
 aux_source_directory(./test_utils test_utils)
 
 add_executable(${PROJECT_NAME} ${test_cases} ${test_utils}
-        Test.cpp
+		MapGenerator/TestMove.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}

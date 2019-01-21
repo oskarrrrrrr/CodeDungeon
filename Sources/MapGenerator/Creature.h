@@ -3,12 +3,12 @@
 
 class Map;
 
-#include <MapGenerator/Move.h>
+#include <MapGenerator/Action.h>
 
 class Creature
 {
 public:
-	Move genMove(Map& map);
+	Action genAction(Map& map);
 
 };
 
