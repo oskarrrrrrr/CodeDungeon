@@ -1,16 +1,17 @@
 #ifndef CODEDUNGEON_PLAYER_H
 #define CODEDUNGEON_PLAYER_H
 
-#include <MapGenerator/Creature.h>
 #include <MapGenerator/Action.h>
+#include <MapGenerator/Creature.h>
 
 class Player : public Creature
 {
 public:
-	bool isAllive();
+    Player()
+    : Creature({-1, -1}, 40, 5) //example values
+    {}
 
-private:
-	int health;
+    Action genAction(Map& map);
 };
 
 

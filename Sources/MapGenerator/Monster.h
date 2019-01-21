@@ -5,7 +5,8 @@
 
 class Monster : public Creature
 {
-
+public:
+    Action genAction(Map& map);
 };
 
 
