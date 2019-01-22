@@ -13,6 +13,7 @@ add_library(${PROJECT_NAME} ${${PROJECT_NAME}src_files}
 
         MapGenerator/Creature.cpp
         MapGenerator/Entity.cpp
+        MapGenerator/HumanPlayer.cpp
         MapGenerator/Item.cpp
         MapGenerator/Map.cpp
         MapGenerator/Monster.cpp

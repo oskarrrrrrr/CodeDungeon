@@ -4,10 +4,11 @@
 #include <Engine.h>
 
 #include <MapGenerator/Action.h>
+#include <MapGenerator/HumanPlayer.h>
 
 void Engine::gameInit(Seed seed)
 {
-    player_ = Player();
+    player_ = std::make_unique<HumanPlayer>();
     seed_ = seed;
 }
 
@@ -17,10 +18,10 @@ void Engine::gameStart()
     {
         Map map = gen_->generate(seed_);
         bool nextFloor = false;
-        while(player_.isAllive() && !nextFloor)
+        while(player_->isAllive() && !nextFloor)
         {
             auto beginTime = std::chrono::high_resolution_clock::now();
-            Action m = player_.genAction(map);
+            Action m = player_->genAction(map);
 
 //            TODO if (m == goNextFloor)
 //            {
@@ -28,7 +29,7 @@ void Engine::gameStart()
 //                continue;
 //            }
 
-            map.makeAction(player_, m);
+            map.makeAction(*(player_.get()), m);
             for (auto& mob : map.monsters())
             {
                 Action m = mob.genAction(map);

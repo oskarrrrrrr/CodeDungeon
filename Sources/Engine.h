@@ -6,6 +6,7 @@
 #include <MapGenerator/IMapGenerator/IMapGenerator.h>
 
 #include <MapGenerator/Map.h>
+#include <MapGenerator/Player.h>
 #include <MapGenerator/Seed.h>
 
 #include <memory>
@@ -24,9 +25,9 @@ public:
 private:
     std::unique_ptr<IMapGenerator> gen_;
     Seed seed_;
-    Player player_;
+    std::unique_ptr<Player> player_;
 
-    int roundTime = 20;
+    int roundTime = 100;
     int maxFloors = 5;
 };
 
