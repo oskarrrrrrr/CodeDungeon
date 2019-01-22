@@ -12,6 +12,7 @@ add_library(${PROJECT_NAME} ${${PROJECT_NAME}src_files}
         MapGenerator/HardcodeMapGenerator/HardcodeTerrainGenerator.cpp
 
         MapGenerator/Creature.cpp
+        MapGenerator/Entity.cpp
         MapGenerator/Item.cpp
         MapGenerator/Map.cpp
         MapGenerator/Monster.cpp

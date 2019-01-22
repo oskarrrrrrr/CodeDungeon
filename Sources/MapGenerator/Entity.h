@@ -22,6 +22,5 @@ private:
     static int id_counter_;
 };
 
-int Entity::id_counter_ = 0;
 
 #endif //CODEDUNGEON_ENTITY_H
