@@ -28,7 +28,7 @@ TEST(ActionShould, ThrowWithWrongType)
     EXPECT_THROW(std::get<Move>(m).dir, std::bad_variant_access);
 }
 
-TEST(ActionShould, asd)
+TEST(ActionShould, WorkWithGetIf)
 {
     Action m = Attack{Attack::LEFT};
 

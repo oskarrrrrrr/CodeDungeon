@@ -21,7 +21,10 @@ struct UseItem
 	int id;
 };
 
+struct Wait
+{};
 
-using Action = std::variant<Attack, Move, GoNextFloor, UseItem>;
+
+using Action = std::variant<Attack, Move, GoNextFloor, UseItem, Wait>;
 
 #endif //CODEDUNGEON_MOVE_H
