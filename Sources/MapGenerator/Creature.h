@@ -20,7 +20,7 @@ public:
 
     virtual Action genAction(Map& map) = 0;
 
-private:
+protected:
     int maxHealth_;
     int actualHealth_;
     int attack_;

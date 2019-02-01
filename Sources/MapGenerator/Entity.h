@@ -15,7 +15,7 @@ public:
         id_counter_++;
     }
 
-private:
+protected:
     int id_;
     Position pos_;
 
