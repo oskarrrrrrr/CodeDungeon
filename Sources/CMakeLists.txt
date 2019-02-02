@@ -11,6 +11,7 @@ add_library(${PROJECT_NAME} ${${PROJECT_NAME}src_files}
 
         MapGenerator/HardcodeMapGenerator/HardcodeTerrainGenerator.cpp
 
+        MapGenerator/Action.cpp
         MapGenerator/Creature.cpp
         MapGenerator/Entity.cpp
         MapGenerator/HumanPlayer.cpp
@@ -18,6 +19,7 @@ add_library(${PROJECT_NAME} ${${PROJECT_NAME}src_files}
         MapGenerator/Map.cpp
         MapGenerator/Monster.cpp
         MapGenerator/Player.cpp
+        MapGenerator/Position.cpp
         MapGenerator/Terrain.cpp
 
         Engine.cpp

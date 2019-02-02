@@ -5,12 +5,18 @@
 
 struct Attack
 {
-	enum{UP, DOWN, RIGHT, LEFT} dir;
+    enum{UP, DOWN, RIGHT, LEFT} dir;
+
+    bool operator == (const Attack& rhs) const;
+    bool operator != (const Attack& rhs) const;
 };
 
 struct Move
 {
-	enum{UP, DOWN, RIGHT, LEFT} dir;
+    enum{UP, DOWN, RIGHT, LEFT} dir;
+
+    bool operator == (const Move& rhs) const;
+    bool operator != (const Move& rhs) const;
 };
 
 struct GoNextFloor
@@ -18,7 +24,7 @@ struct GoNextFloor
 
 struct UseItem
 {
-	int id;
+    int id;
 };
 
 struct Wait
