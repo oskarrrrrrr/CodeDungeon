@@ -6,7 +6,7 @@
 
 using ::testing::UnorderedElementsAre;
 
-TEST(AttackShould, CheckEquality)
+TEST(ActionShould, CheckEqualityForAttack)
 {
     Attack act1 {Attack::UP};
     Attack act1_2 {Attack::UP};
@@ -29,7 +29,7 @@ TEST(AttackShould, CheckEquality)
 }
 
 
-TEST(MoveShould, CheckEquality)
+TEST(ActionShould, CheckEqualityForMove)
 {
     Move act1 {Move::UP};
     Move act1_2 {Move::UP};
@@ -49,6 +49,57 @@ TEST(MoveShould, CheckEquality)
     EXPECT_NE(act2, act3);
     EXPECT_NE(act3, act4);
     EXPECT_NE(act4, act1);
+}
+
+TEST(ActionShould, CheckEqualityForGoNextFloor)
+{
+    GoNextFloor act1 {};
+    GoNextFloor act2 {};
+
+    EXPECT_EQ(act1, act2);
+}
+
+TEST(ActionShould, CheckEqualityForUseItem)
+{
+    UseItem act1 {5};
+    UseItem act1_2 {5};
+    UseItem act2 {7};
+
+    EXPECT_EQ(act1, act1_2);
+    EXPECT_NE(act1, act2);
+    EXPECT_NE(act1_2, act2);
+}
+
+TEST(ActionShould, CheckEqualityForWait)
+{
+    Wait act1 {};
+    Wait act2 {};
+
+    EXPECT_EQ(act1, act2);
+}
+
+
+TEST(ActionShould, CheckEqaulityWithDifferentTypes)
+{
+    Action move1 = Move{Move::UP};
+    Action move1_2 = Move{Move::UP};
+    Action move2 = Move{Move::DOWN};
+
+    Action att1 = Attack{Attack::UP};
+    Action att1_2 = Attack{Attack::UP};
+    Action att2 = Attack{Attack::DOWN};
+
+    Action wait = Wait{};
+
+
+    EXPECT_EQ(move1, move1_2);
+    EXPECT_NE(move1, move2);
+
+    EXPECT_EQ(att1, att1_2);
+    EXPECT_NE(att1, att2);
+
+    EXPECT_NE(move1, att1);
+    EXPECT_NE(move1, wait);
 }
 
 

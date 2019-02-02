@@ -20,15 +20,24 @@ struct Move
 };
 
 struct GoNextFloor
-{};
+{
+    bool operator == (const GoNextFloor& rhs) const;
+    bool operator != (const GoNextFloor& rhs) const;
+};
 
 struct UseItem
 {
     int id;
+
+    bool operator == (const UseItem& rhs) const;
+    bool operator != (const UseItem& rhs) const;
 };
 
 struct Wait
-{};
+{
+    bool operator == (const Wait& rhs) const;
+    bool operator != (const Wait& rhs) const;
+};
 
 
 using Action = std::variant<Attack, Move, GoNextFloor, UseItem, Wait>;
