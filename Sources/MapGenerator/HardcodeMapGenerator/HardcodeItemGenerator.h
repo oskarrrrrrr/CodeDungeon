@@ -5,4 +5,11 @@
 #ifndef CODEDUNGEON_HARDCODEITEMGENERATOR_H
 #define CODEDUNGEON_HARDCODEITEMGENERATOR_H
 
+
+#include <MapGenerator/IMapGenerator/IItemGenerator.h>
+
+class HardcodeItemGenerator : public IItemGenerator
+{
+    
+};
 #endif //CODEDUNGEON_HARDCODEITEMGENERATOR_H

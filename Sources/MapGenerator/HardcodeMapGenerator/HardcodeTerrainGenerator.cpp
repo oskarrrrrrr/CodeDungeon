@@ -1,5 +1,9 @@
 #include <MapGenerator/HardcodeMapGenerator/HardcodeTerrainGenerator.h>
 
+HardcodeTerrainGenerator::HardcodeTerrainGenerator() :
+    ITerrainGenerator{}
+{}
+
 Terrain HardcodeTerrainGenerator::generate(Seed s)
 {
     Terrain t(20, 30);

@@ -6,7 +6,9 @@
 class HardcodeTerrainGenerator : public ITerrainGenerator
 {
 public:
-	Terrain generate(Seed s);
+    HardcodeTerrainGenerator();
+
+	Terrain generate(Seed s) override;
 };
 
 

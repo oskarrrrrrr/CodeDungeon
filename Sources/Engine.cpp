@@ -8,7 +8,7 @@
 
 void Engine::gameInit(Seed seed)
 {
-    player_ = std::make_unique<HumanPlayer>();
+    player_ = std::make_shared<HumanPlayer>();
     seed_ = seed;
 }
 
@@ -16,7 +16,7 @@ void Engine::gameStart()
 {
     for (int floor = 0; floor < maxFloors; floor++)
     {
-        Map map = gen_->generate(seed_);
+        Map map = mapGeneratorFactory_->createMapGenerator(HardcodeMapGeneratorTag{})->generateMap(seed_);
         bool nextFloor = false;
         while(player_->isAllive() && !nextFloor)
         {

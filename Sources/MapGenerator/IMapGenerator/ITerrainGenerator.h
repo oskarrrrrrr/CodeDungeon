@@ -7,6 +7,8 @@
 class ITerrainGenerator
 {
 public:
+	ITerrainGenerator() = default;
+
 	virtual Terrain generate(Seed s) = 0;
 };
 

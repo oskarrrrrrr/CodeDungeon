@@ -14,12 +14,22 @@
 class IMapGenerator
 {
 public:
-	Map generate(Seed& s);
+	Map generateMap(Seed& s);
+
+protected:
+    IMapGenerator(
+        std::unique_ptr<IItemGenerator>&& itemGenerator,
+        std::unique_ptr<IMonsterGenerator>&& monsterGenerator,
+        std::unique_ptr<ITerrainGenerator>&& terrainGenerator) :
+            itemGenerator_(std::move(itemGenerator)),
+            monsterGenerator_(std::move(monsterGenerator)),
+            terrainGenerator_(std::move(terrainGenerator))
+    {}
 
 private:
-  std::unique_ptr<IItemGenerator> itemGenerator_;
-  std::unique_ptr<IMonsterGenerator> monsterGenerator_;
-  std::unique_ptr<ITerrainGenerator> terrainGenerator_;
+    std::unique_ptr<IItemGenerator> itemGenerator_;
+    std::unique_ptr<IMonsterGenerator> monsterGenerator_;
+    std::unique_ptr<ITerrainGenerator> terrainGenerator_;
 };
 
 

@@ -13,10 +13,13 @@
 class Map
 {
 public:
+	Map() = default;
+
 	std::list<Monster>& monsters();
 
 	void makeAction(Creature& who, Action what);
 
+	void addTerrain(const Terrain& terrain);
 private:
     Terrain terrain_;
     std::list<Monster> monsters_;

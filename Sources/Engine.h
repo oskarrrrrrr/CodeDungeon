@@ -8,6 +8,7 @@
 #include <MapGenerator/Map.h>
 #include <MapGenerator/Player.h>
 #include <MapGenerator/Seed.h>
+#include <MapGenerator/MapGeneratorFactory.h>
 
 #include <memory>
 #include <utility>
@@ -15,17 +16,15 @@
 class Engine
 {
 public:
-    Engine(std::unique_ptr<IMapGenerator>& gen)
-    : gen_(std::move(gen))
-    {}
+    Engine() = default;
 
     void gameInit(Seed seed);
     void gameStart();
 
 private:
-    std::unique_ptr<IMapGenerator> gen_;
+    std::unique_ptr<MapGeneratorFactory> mapGeneratorFactory_;
     Seed seed_;
-    std::unique_ptr<Player> player_;
+    PlayerShrdPtr player_;
 
     int roundTime = 100;
     int maxFloors = 5;

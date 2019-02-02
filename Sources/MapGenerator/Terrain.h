@@ -10,6 +10,8 @@
 class Terrain
 {
 public:
+    Terrain() = default;
+
     Terrain(int h, int w)
     : height_(h),
       width_(w),

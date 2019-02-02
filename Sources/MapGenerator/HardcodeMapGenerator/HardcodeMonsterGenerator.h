@@ -5,4 +5,10 @@
 #ifndef CODEDUNGEON_HARDCODEMONSTERGENERATOR_H
 #define CODEDUNGEON_HARDCODEMONSTERGENERATOR_H
 
+#include <MapGenerator/IMapGenerator/IMonsterGenerator.h>
+
+class HardcodeMonsterGenerator : public IMonsterGenerator
+{
+
+};
 #endif //CODEDUNGEON_HARDCODEMONSTERGENERATOR_H
