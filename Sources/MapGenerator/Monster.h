@@ -6,7 +6,11 @@
 class Monster : public Creature
 {
 public:
-    Action genAction(Map& map);
+    Monster(Position pos, int health, int attack)
+    : Creature(pos, health, attack)
+    {}
+
+    Action genAction(Map& map) const;
 };
 
 

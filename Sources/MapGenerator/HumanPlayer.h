@@ -10,7 +10,7 @@ public:
     : Player()
     {}
 
-    Action genAction(Map& map) override;
+    Action genAction(Map& map) const override;
 };
 
 

@@ -3,7 +3,7 @@
 #include <MapGenerator/HumanPlayer.h>
 #include <MapGenerator/Map.h>
 
-Action HumanPlayer::genAction(Map& map)
+Action HumanPlayer::genAction(Map& map) const
 {
     int c = 0;
     int lastKey = 0;

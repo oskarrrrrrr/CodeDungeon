@@ -13,17 +13,21 @@
 class Map
 {
 public:
-	Map() = default;
+    Map() = default;
 
-	std::list<Monster>& monsters();
+    const std::list<Monster>& monsters() const;
+    const PlayerShrdPtr& player() const;
 
-	void makeAction(Creature& who, Action what);
+    void makeAction(const Creature& who, Action what);
 
-	void addTerrain(const Terrain& terrain);
+    void addTerrain(const Terrain& terrain);
+    void addPlayer(PlayerShrdPtr player);
+
 private:
     Terrain terrain_;
     std::list<Monster> monsters_;
     std::list<Item> items_;
+    PlayerShrdPtr player_;
 };
 
 

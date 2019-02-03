@@ -15,6 +15,9 @@ public:
         id_counter_++;
     }
 
+    int id() const;
+    const Position& position() const;
+
 protected:
     int id_;
     Position pos_;

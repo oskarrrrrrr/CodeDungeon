@@ -18,7 +18,7 @@ public:
 
     bool isAllive();
 
-    virtual Action genAction(Map& map) = 0;
+    virtual Action genAction(Map& map) const = 0;
 
 protected:
     int maxHealth_;

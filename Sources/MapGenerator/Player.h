@@ -13,7 +13,7 @@ public:
     : Creature({-1, -1}, 40, 5) //example values
     {}
 
-    Action genAction(Map& map);
+    void setPosition(Position pos);
 };
 
 using PlayerShrdPtr = std::shared_ptr<Player>;
