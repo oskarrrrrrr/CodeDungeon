@@ -13,6 +13,7 @@ aux_source_directory(./test_utils test_utils)
 
 add_executable(${PROJECT_NAME} ${test_cases} ${test_utils}
 		MapGenerator/TestAction.cpp
+		MapGenerator/TestMonster.cpp
 		MapGenerator/TestPosition.cpp
 )
 

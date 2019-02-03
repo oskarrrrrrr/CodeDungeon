@@ -10,7 +10,7 @@ public:
     : Creature(pos, health, attack)
     {}
 
-    Action genAction(Map& map) const;
+    Action genAction(Map& map) const override;
 };
 
 
