@@ -3,59 +3,59 @@
 
 #include <MapGenerator/Terrain.h>
 
-const Field& Terrain::operator()(int row, int column) const
+const Field& Terrain::operator[](const Position& pos) const
 {
-    return fields_[row*width_ + column];
+    return fields_[pos.row*width_ + pos.column];
 }
 
-Field& Terrain::operator()(int row, int column)
+Field& Terrain::operator[](const Position& pos)
 {
-    return const_cast<Field &>(static_cast<const Terrain &>(*this)(row, column));
+    return const_cast<Field &>(static_cast<const Terrain &>(*this)[pos]);
 }
 
-const Field& Terrain::at(int row, int column) const
+const Field& Terrain::at(const Position& pos) const
 {
-    if (row >= height_)
+    if (pos.row >= height_)
         throw std::out_of_range("Terrain: 'row' arg in 'at' function out of range.");
-    else if (column >= width_)
+    else if (pos.column >= width_)
         throw std::out_of_range("Terrain: 'column' arg in 'at' function out of range.");
-    return (*this)(row, column);
+    return (*this)[pos];
 }
 
-void Terrain::addRoom(int row, int column, int h, int w)
+void Terrain::addRoom(const Position& pos, int h, int w)
 {
-    for (int r = row; r < row + h; r++)
+    for (int r = pos.row; r < pos.row + h; r++)
     {
-        for (int c = column; c < column + w; c++)
-            (*this)(r, c) = Field::Ground;
+        for (int c = pos.column; c < pos.column + w; c++)
+            (*this)[{r, c}] = Field::Ground;
     }
 }
 
-void Terrain::addCorridor(int beginningRow, int beginningColumn, int length, bool isHorizontal)
+void Terrain::addCorridor(const Position& begin, int length, bool isHorizontal)
 {
     if (isHorizontal)
-        for (int c = beginningColumn; c < beginningColumn + length; c++)
-                (*this)(beginningRow, c) = Field::Ground;
+        for (int c = begin.column; c < begin.column + length; c++)
+                (*this)[{begin.row, c}] = Field::Ground;
     else
-        for (int r = beginningRow; r < beginningRow + length; r++)
-            (*this)(r, beginningColumn) = Field::Ground;
+        for (int r = begin.row; r < begin.row + length; r++)
+            (*this)[{r, begin.column}] = Field::Ground;
 }
 
-void Terrain::setSpawn(int row, int column)
+void Terrain::setSpawn(const Position& pos)
 {
     if (isSpawn_)
         throw std::logic_error("Spawn has been already set");
-    (*this)(row, column) = Field::Spawn;
+    (*this)[pos] = Field::Spawn;
     isSpawn_ = true;
 
-    spawnLoc_ = Position{row, column};
+    spawnLoc_ = pos;
 }
 
-void Terrain::setStairs(int row, int column)
+void Terrain::setStairs(const Position& pos)
 {
     if (isStairs_)
         throw std::logic_error("Stairs has been already set");
-    (*this)(row, column) = Field::Stairs;
+    (*this)[pos] = Field::Stairs;
     isStairs_ = true;
 }
 
@@ -85,7 +85,7 @@ std::string Terrain::toString() const
     for (int r = 0; r < height_; r++)
     {
         for (int c = 0; c < width_; c++)
-            res << fieldToChar((*this)(r, c));
+            res << fieldToChar((*this)[{r, c}]);
         res << "\n";
     }
     return res.str();

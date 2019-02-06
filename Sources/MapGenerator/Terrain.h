@@ -28,20 +28,20 @@ public:
     const Position& spawnLoc() const
         { return spawnLoc_; }
 
-    const Field& operator()(int row, int column) const;
+    const Field& operator[](const Position& pos) const;
+    Field& operator[](const Position& pos);
 
-    const Field& at(int row, int column) const;
+    const Field& at(const Position& pos) const;
 
-    void addRoom(int row, int column, int h, int w);
-    void addCorridor(int beginningRow, int beginningColumn, int length, bool isHorizontal);
-    void setSpawn(int row, int column);
-    void setStairs(int row, int column);
+    void addRoom(const Position& pos, int h, int w);
+    void addCorridor(const Position& pos, int length, bool isHorizontal);
+    void setSpawn(const Position& pos);
+    void setStairs(const Position& pos);
 
 
     std::string toString() const;
 
 private:
-    Field& operator()(int row, int column);
 
     int height_;
     int width_;
