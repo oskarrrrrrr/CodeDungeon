@@ -14,7 +14,7 @@
 class IMapGenerator
 {
 public:
-	Map generateMap(Seed& s);
+	Map generateMap(Seed& s, PlayerShrdPtr player);
 
 protected:
     IMapGenerator(

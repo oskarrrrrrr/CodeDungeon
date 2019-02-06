@@ -16,7 +16,7 @@ void Engine::gameStart()
 {
     for (int floor = 0; floor < maxFloors; floor++)
     {
-        Map map = mapGeneratorFactory_->createMapGenerator(HardcodeMapGeneratorTag{})->generateMap(seed_);
+        Map map = mapGeneratorFactory_->createMapGenerator(HardcodeMapGeneratorTag{})->generateMap(seed_, player_);
         bool nextFloor = false;
         while(player_->isAllive() && !nextFloor)
         {
