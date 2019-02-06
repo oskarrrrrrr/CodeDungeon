@@ -43,3 +43,23 @@ void Map::addTerrain(const Terrain& terrain)
 {
     terrain_ = terrain;
 }
+
+
+void Map::makeAction(const Creature& who, Action what)
+{
+    if (who.id() == player_->id())
+        makeAction_(*(player_), what);
+    else
+        makeAction_(
+            *std::find_if(std::begin(monsters_), std::end(monsters_), [&who](const Monster& mob){return mob.id() == who.id();}),
+            what);
+}
+
+void Map::makeAction_(Creature& who, Action what)
+{
+    if (std::holds_alternative<Move>(what))
+    {
+        if (terrain_[who.position() + std::get<Move>(what)] != Field::Wall)
+           who.makeMove(std::get<Move>(what));
+    }
+}

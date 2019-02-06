@@ -25,9 +25,10 @@ public:
     void addPlayer(PlayerShrdPtr player);
     void addTerrain(const Terrain& terrain);
 
-
     void makeAction(const Creature& who, Action what);
+
 private:
+    void makeAction_(Creature& who, Action what);
 
     Terrain terrain_;
     std::list<Monster> monsters_;
