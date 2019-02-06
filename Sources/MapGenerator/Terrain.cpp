@@ -48,7 +48,7 @@ void Terrain::setSpawn(int row, int column)
     (*this)(row, column) = Field::Spawn;
     isSpawn_ = true;
 
-    spawnLoc_ = std::make_pair(row, column);
+    spawnLoc_ = Position{row, column};
 }
 
 void Terrain::setStairs(int row, int column)
