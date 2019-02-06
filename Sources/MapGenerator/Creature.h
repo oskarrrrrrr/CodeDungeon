@@ -5,6 +5,7 @@ class Map;
 
 #include <MapGenerator/Action.h>
 #include <MapGenerator/Entity.h>
+#include "Item.h"
 
 class Creature : public Entity
 {
@@ -22,6 +23,8 @@ public:
     int attack() const;
 
     void makeMove(const Move& move);
+
+    virtual void useItem(const Item& item);
 
     virtual Action genAction(Map& map) const = 0;
 

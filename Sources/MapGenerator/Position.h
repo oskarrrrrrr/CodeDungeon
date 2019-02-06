@@ -5,6 +5,12 @@
 
 struct Position
 {
+    Position() = default;
+
+    Position(int row, int column)
+    : row(row), column(column)
+    {}
+
     int row;
     int column;
 

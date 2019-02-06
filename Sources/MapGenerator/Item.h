@@ -5,9 +5,15 @@
 
 class Item : public Entity
 {
-    Item(Position pos)
-    : Entity(pos)
+public:
+    Item(Position pos, int attack, int health)
+    : Entity(pos), attackBuff(attack), healthBuff(health)
     {}
+
+    int attackBuff;
+    int healthBuff;
+
+    const static char field = 'I';
 };
 
 #endif //CODEDUNGEON_ITEM_H

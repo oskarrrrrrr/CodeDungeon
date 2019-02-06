@@ -62,4 +62,17 @@ void Map::makeAction_(Creature& who, Action what)
         if (terrain_[who.position() + std::get<Move>(what)] != Field::Wall)
            who.makeMove(std::get<Move>(what));
     }
+
+    else if(std::holds_alternative<UseItem>(what))
+    {
+        auto itemIter = std::find_if(std::begin(items_), std::end(items_), [&what](const Item& item){return item.id() == std::get<UseItem>(what).id;});
+        if(itemIter == std::end(items_))
+        {
+            throw std::logic_error("Item with Id: " + std::to_string(std::get<UseItem>(what).id) + " does not exist in item list.");
+        }
+        else
+        {
+            who.useItem(*itemIter);
+        }
+    }
 }

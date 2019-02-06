@@ -14,6 +14,8 @@ public:
     {}
 
     void setPosition(Position pos);
+
+    void useItem(const Item& item) override;
 };
 
 using PlayerShrdPtr = std::shared_ptr<Player>;

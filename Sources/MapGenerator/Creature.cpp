@@ -25,3 +25,6 @@ void Creature::makeMove(const Move& move)
 {
 	pos_ += move;
 }
+
+void Creature::useItem(const Item &item)
+{}
