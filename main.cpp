@@ -1,43 +1,44 @@
 #include <MapGenerator/IMapGenerator/ITerrainGenerator.h>
 #include <MapGenerator/HardcodeMapGenerator/HardcodeTerrainGenerator.h>
 #include <MapGenerator/Seed.h>
+#include <MapGenerator/HumanPlayer.h>
+
+#include <Engine.h>
 
 #include <curses.h>
 #include <memory>
 #include <iostream>
 
-void initialize()
+int initialize()
 {
 	initscr();
 
 	cbreak();
 	keypad(stdscr, TRUE);
-	intrflush( stdscr, FALSE );
+	intrflush(stdscr, FALSE);
 	noecho();
-	timeout(0); // non-blocking read
+
+    timeout(0); // non-blocking read
+
+    curs_set(0);
 }
 
-void finalize()
+void finalize(int curs)
 {
+    if (curs >= 0)
+        curs_set(curs);
 	endwin();
 }
 
 int main()
 {
-	initialize();
+	int curs = initialize();
 
-	std::unique_ptr<ITerrainGenerator> terrain_generator(new HardcodeTerrainGenerator);
-	std::unique_ptr<Seed> s(new Seed);
-	Terrain terrain = terrain_generator.get()->generate(*(s.get()));
+	Engine engine = Engine();
+	engine.gameInit(Seed{});
+	engine.gameStart();
 
-    waddstr( stdscr, const_cast<char*>(terrain.toString().c_str()) );
-
-    wmove( stdscr, 22, 3 );
-    waddstr( stdscr, "Press any key to exit" );
-    timeout(-1); // make blocking again
-    wgetch(stdscr);
-
-    finalize();
+    finalize(curs);
 
     return 0;
 }

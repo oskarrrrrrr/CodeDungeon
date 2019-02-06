@@ -2,9 +2,11 @@
 #include <thread>
 
 #include <Engine.h>
+#include <PrintUtils.h>
 
 #include <MapGenerator/Action.h>
 #include <MapGenerator/HumanPlayer.h>
+
 
 void Engine::gameInit(Seed seed)
 {
@@ -36,7 +38,8 @@ void Engine::gameStart()
                 map.makeAction(mob, m);
             }
 
-//            TODO show
+            showGameState(map);
+
             std::this_thread::sleep_until(beginTime + std::chrono::milliseconds(roundTime));
         }
     }
