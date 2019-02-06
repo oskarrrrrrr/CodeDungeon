@@ -8,8 +8,8 @@ Map IMapGenerator::generateMap(Seed& s, PlayerShrdPtr player)
     auto terrain = terrainGenerator_->generate(s);
     m.addTerrain(terrain);
 
-    // auto items = itemGenerator_->generate(s, m);
-    // m.addItems(items);
+    auto items = itemGenerator_->generate(s, m);
+    m.addItems(items);
 
     // auto monsters = monsterGenerator_->generate(s, m);
     // m.addMonsters(monsters);

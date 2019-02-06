@@ -9,6 +9,7 @@
 
 class HardcodeItemGenerator : public IItemGenerator
 {
-    std::list<Item> generate() override;
+public:
+    std::list<Item> generate(Seed& seed, const Map& map) override;
 };
 #endif //CODEDUNGEON_HARDCODEITEMGENERATOR_H

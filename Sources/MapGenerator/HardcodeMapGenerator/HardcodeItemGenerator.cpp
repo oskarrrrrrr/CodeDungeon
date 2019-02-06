@@ -4,7 +4,7 @@
 
 #include "HardcodeItemGenerator.h"
 
-std::list<Item> HardcodeItemGenerator::generate()
+std::list<Item> HardcodeItemGenerator::generate(Seed& seed, const Map& map)
 {
     std::list<Item> resultItems;
 
