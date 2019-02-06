@@ -16,7 +16,10 @@ public:
       attack_(attack)
     {}
 
-    bool isAllive();
+    bool isAllive() const;
+    int maxHealth() const;
+    int actualHealth() const;
+    int attack() const;
 
     virtual Action genAction(Map& map) const = 0;
 

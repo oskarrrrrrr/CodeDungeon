@@ -15,15 +15,20 @@ class Map
 public:
     Map() = default;
 
+    const std::list<Item>& items() const;
     const std::list<Monster>& monsters() const;
     const PlayerShrdPtr& player() const;
+    const Terrain& terrain() const;
+
+    void addItems(const std::list<Item>& items);
+    void addMonsters(const std::list<Monster>& monsters);
+    void addPlayer(PlayerShrdPtr player);
+    void addTerrain(const Terrain& terrain);
+
 
     void makeAction(const Creature& who, Action what);
-
-    void addTerrain(const Terrain& terrain);
-    void addPlayer(PlayerShrdPtr player);
-
 private:
+
     Terrain terrain_;
     std::list<Monster> monsters_;
     std::list<Item> items_;
