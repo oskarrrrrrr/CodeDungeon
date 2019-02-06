@@ -21,6 +21,8 @@ public:
     int actualHealth() const;
     int attack() const;
 
+    void makeMove(const Move& move);
+
     virtual Action genAction(Map& map) const = 0;
 
 protected:

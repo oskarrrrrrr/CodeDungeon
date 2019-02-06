@@ -19,3 +19,9 @@ int Creature::attack() const
 {
 	return attack_;
 }
+
+
+void Creature::makeMove(const Move& move)
+{
+	pos_ += move;
+}
