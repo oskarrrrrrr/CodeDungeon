@@ -26,5 +26,10 @@ void Creature::makeMove(const Move& move)
 	pos_ += move.dir;
 }
 
+void Creature::getHit(int dmg)
+{
+	actualHealth_ -= dmg;
+}
+
 void Creature::useItem(const Item &item)
 {}

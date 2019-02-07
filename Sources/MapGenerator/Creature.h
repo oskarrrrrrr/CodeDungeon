@@ -22,7 +22,9 @@ public:
     int actualHealth() const;
     int attack() const;
 
+
     void makeMove(const Move& move);
+    void getHit(int dmg);
 
     virtual void useItem(const Item& item);
 

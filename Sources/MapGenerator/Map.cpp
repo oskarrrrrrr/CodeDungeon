@@ -63,6 +63,22 @@ void Map::makeAction_(Creature& who, Action what)
            who.makeMove(std::get<Move>(what));
     }
 
+    else if(std::holds_alternative<Attack>(what))
+    {
+        auto move = std::get<Attack>(what);
+        auto targetPosition = who.position() + move.dir;
+
+        if (targetPosition == player_->position())
+        {
+            player_->getHit(who.attack());
+        }
+        else
+        {
+            auto targetIter = std::find_if(std::begin(monsters_), std::end(monsters_), [&targetPosition](const Monster& mob){return mob.position() == targetPosition;});
+            targetIter->getHit(who.attack());
+        }
+    }
+
     else if(std::holds_alternative<UseItem>(what))
     {
         auto itemIter = std::find_if(std::begin(items_), std::end(items_), [&what](const Item& item){return item.id() == std::get<UseItem>(what).id;});
