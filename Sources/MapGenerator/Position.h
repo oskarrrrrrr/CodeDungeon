@@ -16,8 +16,8 @@ struct Position
 
     bool operator == (const Position& rhs) const;
     bool operator != (const Position& rhs) const;
-    void operator += (const Move& rhs);
-    Position operator + (const Move& rhs) const;
+    void operator += (const Direction& rhs);
+    Position operator + (const Direction& rhs) const;
 };
 
 #endif //CODEDUNGEON_POSITION_H

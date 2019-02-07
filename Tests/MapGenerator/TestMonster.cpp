@@ -34,7 +34,7 @@ TEST(MonsterShould, AttackNearPlayer)
     map.addPlayer(p);
 
     p->setPosition({4,5});
-    EXPECT_EQ(mob.genAction(map), Action{Attack{Attack::UP}});
+    EXPECT_EQ(mob.genAction(map), Action{Attack{Direction::UP}});
     p->setPosition({5,4});
-    EXPECT_EQ(mob.genAction(map), Action{Attack{Attack::LEFT}});
+    EXPECT_EQ(mob.genAction(map), Action{Attack{Direction::LEFT}});
 }

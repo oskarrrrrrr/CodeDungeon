@@ -23,7 +23,7 @@ int Creature::attack() const
 
 void Creature::makeMove(const Move& move)
 {
-	pos_ += move;
+	pos_ += move.dir;
 }
 
 void Creature::useItem(const Item &item)

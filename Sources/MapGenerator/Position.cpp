@@ -10,19 +10,19 @@ bool Position::operator != (const Position& rhs) const
     return !(*this == rhs);
 }
 
-void Position::operator += (const Move& rhs)
+void Position::operator += (const Direction& rhs)
 {
-    if (rhs == Move{Move::UP})
+    if (rhs == Direction::UP)
         row--;
-    if (rhs == Move{Move::DOWN})
+    if (rhs == Direction::DOWN)
         row++;
-    if (rhs == Move{Move::RIGHT})
+    if (rhs == Direction::RIGHT)
         column++;
-    if (rhs == Move{Move::LEFT})
+    if (rhs == Direction::LEFT)
         column--;
 }
 
-Position Position::operator + (const Move& rhs) const
+Position Position::operator + (const Direction& rhs) const
 {
     Position newPos {row, column};
     newPos += rhs;

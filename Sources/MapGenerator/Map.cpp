@@ -59,7 +59,7 @@ void Map::makeAction_(Creature& who, Action what)
 {
     if (std::holds_alternative<Move>(what))
     {
-        if (terrain_[who.position() + std::get<Move>(what)] != Field::Wall)
+        if (terrain_[who.position() + std::get<Move>(what).dir] != Field::Wall)
            who.makeMove(std::get<Move>(what));
     }
 
@@ -75,4 +75,5 @@ void Map::makeAction_(Creature& who, Action what)
             who.useItem(*itemIter);
         }
     }
+
 }

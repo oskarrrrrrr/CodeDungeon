@@ -6,16 +6,39 @@
 
 using ::testing::UnorderedElementsAre;
 
+TEST(DirectionShould, checkEquality)
+{
+    Direction dir1 {Direction::UP};
+    Direction dir1_2 {Direction::UP};
+    Direction dir2 {Direction::DOWN};
+    Direction dir2_2 {Direction::DOWN};
+    Direction dir3 {Direction::LEFT};
+    Direction dir3_2 {Direction::LEFT};
+    Direction dir4 {Direction::RIGHT};
+    Direction dir4_2 {Direction::RIGHT};
+
+
+    EXPECT_EQ(dir1, dir1_2);
+    EXPECT_EQ(dir2, dir2_2);
+    EXPECT_EQ(dir3, dir3_2);
+    EXPECT_EQ(dir4, dir4_2);
+
+    EXPECT_NE(dir1, dir2);
+    EXPECT_NE(dir2, dir3);
+    EXPECT_NE(dir3, dir4);
+    EXPECT_NE(dir4, dir1);
+}
+
 TEST(ActionShould, CheckEqualityForAttack)
 {
-    Attack act1 {Attack::UP};
-    Attack act1_2 {Attack::UP};
-    Attack act2 {Attack::DOWN};
-    Attack act2_2 {Attack::DOWN};
-    Attack act3 {Attack::LEFT};
-    Attack act3_2 {Attack::LEFT};
-    Attack act4 {Attack::RIGHT};
-    Attack act4_2 {Attack::RIGHT};
+    Attack act1 {Direction::UP};
+    Attack act1_2 {Direction::UP};
+    Attack act2 {Direction::DOWN};
+    Attack act2_2 {Direction::DOWN};
+    Attack act3 {Direction::LEFT};
+    Attack act3_2 {Direction::LEFT};
+    Attack act4 {Direction::RIGHT};
+    Attack act4_2 {Direction::RIGHT};
 
     EXPECT_EQ(act1, act1_2);
     EXPECT_EQ(act2, act2_2);
@@ -31,14 +54,14 @@ TEST(ActionShould, CheckEqualityForAttack)
 
 TEST(ActionShould, CheckEqualityForMove)
 {
-    Move act1 {Move::UP};
-    Move act1_2 {Move::UP};
-    Move act2 {Move::DOWN};
-    Move act2_2 {Move::DOWN};
-    Move act3 {Move::LEFT};
-    Move act3_2 {Move::LEFT};
-    Move act4 {Move::RIGHT};
-    Move act4_2 {Move::RIGHT};
+    Move act1 {Direction::UP};
+    Move act1_2 {Direction::UP};
+    Move act2 {Direction::DOWN};
+    Move act2_2 {Direction::DOWN};
+    Move act3 {Direction::LEFT};
+    Move act3_2 {Direction::LEFT};
+    Move act4 {Direction::RIGHT};
+    Move act4_2 {Direction::RIGHT};
 
     EXPECT_EQ(act1, act1_2);
     EXPECT_EQ(act2, act2_2);
@@ -81,13 +104,13 @@ TEST(ActionShould, CheckEqualityForWait)
 
 TEST(ActionShould, CheckEqaulityWithDifferentTypes)
 {
-    Action move1 = Move{Move::UP};
-    Action move1_2 = Move{Move::UP};
-    Action move2 = Move{Move::DOWN};
+    Action move1 = Move{Direction::UP};
+    Action move1_2 = Move{Direction::UP};
+    Action move2 = Move{Direction::DOWN};
 
-    Action att1 = Attack{Attack::UP};
-    Action att1_2 = Attack{Attack::UP};
-    Action att2 = Attack{Attack::DOWN};
+    Action att1 = Attack{Direction::UP};
+    Action att1_2 = Attack{Direction::UP};
+    Action att2 = Attack{Direction::DOWN};
 
     Action wait = Wait{};
 
@@ -105,7 +128,7 @@ TEST(ActionShould, CheckEqaulityWithDifferentTypes)
 
 TEST(ActionShould, CheckType)
 {
-    Action m = Attack{Attack::UP};
+    Action m = Attack{Direction::UP};
 
     EXPECT_TRUE(std::holds_alternative<Attack>(m));
     EXPECT_FALSE(std::holds_alternative<Move>(m));
@@ -113,22 +136,22 @@ TEST(ActionShould, CheckType)
 
 TEST(ActionShould, ReturnGoodValue)
 {
-    Action m = Attack{Attack::UP};
+    Action m = Attack{Direction::UP};
 
-    EXPECT_EQ(std::get<Attack>(m).dir, Attack::UP);
+    EXPECT_EQ(std::get<Attack>(m).dir, Direction::UP);
 }
 
 TEST(ActionShould, ThrowWithWrongType)
 {
-    Action m = Attack{Attack::LEFT};
+    Action m = Attack{Direction::LEFT};
 
     EXPECT_THROW(std::get<Move>(m).dir, std::bad_variant_access);
 }
 
 TEST(ActionShould, WorkWithGetIf)
 {
-    Action m = Attack{Attack::LEFT};
+    Action m = Attack{Direction::LEFT};
 
 	EXPECT_EQ(std::get_if<Move>(&m), nullptr);
-	EXPECT_EQ(std::get_if<Attack>(&m)->dir, Attack::LEFT);
+	EXPECT_EQ(std::get_if<Attack>(&m)->dir, Direction::LEFT);
 }

@@ -8,14 +8,14 @@ Action Monster::genAction(Map& map) const
     const auto& playerPosition = map.player()->position();
 
 
-    if (pos_ + Move{Move::UP} == playerPosition)
-        return Attack{Attack::UP};
-    if (pos_ + Move{Move::DOWN} == playerPosition)
-        return Attack{Attack::DOWN};
-    if (pos_ + Move{Move::RIGHT} == playerPosition)
-        return Attack{Attack::RIGHT};
-    if (pos_ + Move{Move::LEFT} == playerPosition)
-        return Attack{Attack::LEFT};
+    if (pos_ + Direction::UP == playerPosition)
+        return Attack{Direction::UP};
+    if (pos_ + Direction::DOWN == playerPosition)
+        return Attack{Direction::DOWN};
+    if (pos_ + Direction::RIGHT == playerPosition)
+        return Attack{Direction::RIGHT};
+    if (pos_ + Direction::LEFT == playerPosition)
+        return Attack{Direction::LEFT};
 
     return Wait{};
 }

@@ -24,17 +24,17 @@ TEST(PositionShould, BeAbleToMove)
 {
     Position pos {7, 9};
 
-    EXPECT_EQ(pos + Move{Move::UP}, (Position{6, 9}));
-    EXPECT_EQ(pos + Move{Move::DOWN}, (Position{8, 9}));
-    EXPECT_EQ(pos + Move{Move::LEFT}, (Position{7, 8}));
-    EXPECT_EQ(pos + Move{Move::RIGHT}, (Position{7, 10}));
+    EXPECT_EQ(pos + Direction::UP, (Position{6, 9}));
+    EXPECT_EQ(pos + Direction::DOWN, (Position{8, 9}));
+    EXPECT_EQ(pos + Direction::LEFT, (Position{7, 8}));
+    EXPECT_EQ(pos + Direction::RIGHT, (Position{7, 10}));
 
-    pos += Move{Move::UP};
+    pos += Direction::UP;
     EXPECT_EQ(pos, (Position{6, 9}));
-    pos += Move{Move::LEFT};
+    pos += Direction::LEFT;
     EXPECT_EQ(pos, (Position{6, 8}));
-    pos += Move{Move::DOWN};
+    pos += Direction::DOWN;
     EXPECT_EQ(pos, (Position{7, 8}));
-    pos += Move{Move::RIGHT};
+    pos += Direction::RIGHT;
     EXPECT_EQ(pos, (Position{7, 9}));
 }

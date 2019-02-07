@@ -3,9 +3,11 @@
 
 #include <variant>
 
+enum class Direction {UP, DOWN, LEFT, RIGHT};
+
 struct Attack
 {
-    enum{UP, DOWN, RIGHT, LEFT} dir;
+    Direction dir;
 
     bool operator == (const Attack& rhs) const;
     bool operator != (const Attack& rhs) const;
@@ -13,7 +15,7 @@ struct Attack
 
 struct Move
 {
-    enum{UP, DOWN, RIGHT, LEFT} dir;
+    Direction dir;
 
     bool operator == (const Move& rhs) const;
     bool operator != (const Move& rhs) const;
