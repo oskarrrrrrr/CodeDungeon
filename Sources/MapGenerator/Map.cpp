@@ -44,11 +44,31 @@ void Map::addTerrain(const Terrain& terrain)
     terrain_ = terrain;
 }
 
+bool Map::isThereAnyMonsterOnPosition(const Position& pos)
+{
+    auto found_monster =
+        std::find_if(
+            std::begin(monsters_),
+            std::end(monsters_),
+            [pos](const Monster& mob){return mob.position() == pos;});
+
+    return (found_monster->position() == pos);
+}
 
 void Map::makeAction(const Creature& who, Action what)
 {
     if (who.id() == player_->id())
-        makeAction_(*(player_), what);
+    {
+        if (std::holds_alternative<Move>(what)
+            && isThereAnyMonsterOnPosition(who.position() + std::get<Move>(what).dir))
+        {
+            makeAction_(*(player_), Attack{std::get<Move>(what).dir});
+        }
+        else
+        {
+            makeAction_(*(player_), what);
+        }
+    }
     else
         makeAction_(
             *std::find_if(std::begin(monsters_), std::end(monsters_), [&who](const Monster& mob){return mob.id() == who.id();}),
@@ -76,6 +96,8 @@ void Map::makeAction_(Creature& who, Action what)
         {
             auto targetIter = std::find_if(std::begin(monsters_), std::end(monsters_), [&targetPosition](const Monster& mob){return mob.position() == targetPosition;});
             targetIter->getHit(who.attack());
+            if (!targetIter->actualHealth())
+                monsters_.erase(targetIter);
         }
     }
 

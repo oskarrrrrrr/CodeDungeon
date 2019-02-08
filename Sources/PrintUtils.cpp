@@ -10,9 +10,22 @@
 #include <MapGenerator/Terrain.h>
 
 
+void print_monsters_stats(const Map& map)
+{
+    int row = map.terrain().height() + 2;
+
+    for (int i = 0; i < 5; ++i)
+        mvwprintw(stdscr, row + i, 0, "                                                                                                                       ");
+
+    for (auto m : map.monsters())
+        mvwprintw(stdscr, row++, 0, "id: %d, pos_row: %d, pos_column: %d, actualHealth: %d, attack: %d", m.id(), m.position().row, m.position().column, m.actualHealth(), m.attack());
+}
+
 void showGameState(const Map& map)
 {
     const auto& player = map.player();
+
+    mvwprintw(stdscr, 0, 0, "                                         ");
 
     mvwprintw(stdscr, 0, 5, "Attack: %d", player->attack());
     mvwprintw(stdscr, 0, 25, "Health: %d/%d", player->actualHealth(), player->maxHealth());
@@ -35,4 +48,6 @@ void showGameState(const Map& map)
     auto& pos = player->position();
     mvwaddch(stdscr, pos.row+1, pos.column, 'P');
     wmove(stdscr, pos.row+1, pos.column);
+
+    print_monsters_stats(map);
 }
