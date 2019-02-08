@@ -13,5 +13,5 @@ std::unique_ptr<IMapGenerator> MapGeneratorFactory::createMapGenerator(HardcodeM
 
 std::unique_ptr<IMapGenerator> MapGeneratorFactory::createMapGenerator(RandomMapGenerator1Tag)
 {
-    return std::make_unique<IMapGenerator>(RandomMapGenerator1Tag{});
+    return std::make_unique<IMapGenerator>(RandomMapGenerator1{});
 }

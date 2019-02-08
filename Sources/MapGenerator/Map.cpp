@@ -77,7 +77,7 @@ void Map::makeAction(const Creature& who, Action what)
             else
             {
                 auto potential_item = getItemOnPosition(targetPosition);
-                if (potential_item->position() != std::end(items_))
+                if (potential_item != std::end(items_))
                 {
                     player_->useItem(*potential_item);
                     items_.erase(potential_item);
