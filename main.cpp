@@ -1,5 +1,4 @@
 #include <MapGenerator/IMapGenerator/ITerrainGenerator.h>
-#include <MapGenerator/HardcodeMapGenerator/HardcodeTerrainGenerator.h>
 #include <MapGenerator/RandomGenerator.h>
 #include <MapGenerator/HumanPlayer.h>
 

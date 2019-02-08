@@ -4,8 +4,6 @@
 
 #include "HardcodeMonsterGenerator.h"
 
-#include <iostream>
-
 std::list<Monster> HardcodeMonsterGenerator::generate(RandomGenerator& randGen, const Map& map)
 {
   std::list<Monster> resultMonsters;

@@ -1,5 +1,7 @@
 #include <MapGenerator/Position.h>
 
+#include <sstream>
+
 bool Position::operator == (const Position& rhs) const
 {
     return row == rhs.row && column == rhs.column;
@@ -27,4 +29,11 @@ Position Position::operator + (const Direction& rhs) const
     Position newPos {row, column};
     newPos += rhs;
     return newPos;
+}
+
+std::string Position::toString() const
+{
+    std::ostringstream res;
+    res << "(" << column << ", " << row << ")";
+    return res.str();
 }

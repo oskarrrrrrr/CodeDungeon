@@ -63,6 +63,10 @@ auto Map::getItemOnPosition(const Position& pos)
 
 void Map::makeAction(const Creature& who, Action what)
 {
+    if (std::holds_alternative<Move>(what)
+        && terrain_[who.position() + std::get<Move>(what).dir] == Field::Wall)
+        return;
+
     if (who.id() == player_->id())
     {
         if (std::holds_alternative<Move>(what))
@@ -77,7 +81,7 @@ void Map::makeAction(const Creature& who, Action what)
             else
             {
                 auto potential_item = getItemOnPosition(targetPosition);
-                if (potential_item->position() != std::end(items_))
+                if (potential_item != std::end(items_))
                 {
                     player_->useItem(*potential_item);
                     items_.erase(potential_item);
@@ -103,8 +107,7 @@ void Map::makeAction_(Creature& who, Action what)
 {
     if (std::holds_alternative<Move>(what))
     {
-        if (terrain_[who.position() + std::get<Move>(what).dir] != Field::Wall)
-           who.makeMove(std::get<Move>(what));
+        who.makeMove(std::get<Move>(what));
     }
 
     else if(std::holds_alternative<Attack>(what))
@@ -119,6 +122,10 @@ void Map::makeAction_(Creature& who, Action what)
         else
         {
             auto target_monster = getMonsterOnPosition(targetPosition);
+
+            if (target_monster == std::end(monsters_))
+                throw std::logic_error("Trying to attack nonexistent monster on position: " + targetPosition.toString());
+
             target_monster->getHit(who.attack());
 
             if (target_monster->actualHealth() <= 0)
