@@ -2,6 +2,8 @@
 #define CODEDUNGEON_MAP_H
 
 #include <list>
+#include <vector>
+#include <memory>
 
 
 #include <MapGenerator/Item.h>
@@ -15,7 +17,7 @@ class Map
 public:
     Map() = default;
 
-    const std::list<Item>& items() const;
+    const std::list<std::unique_ptr<Item>>& items() const;
     const std::list<Monster>& monsters() const;
     const PlayerShrdPtr& player() const;
     const Terrain& terrain() const;
@@ -35,7 +37,7 @@ private:
 
     Terrain terrain_;
     std::list<Monster> monsters_;
-    std::list<Item> items_;
+    std::list<std::unique_ptr<Item>> items_;
     PlayerShrdPtr player_;
 };
 

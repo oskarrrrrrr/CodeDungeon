@@ -15,7 +15,7 @@ add_executable(${PROJECT_NAME} ${test_cases} ${test_utils}
 		MapGenerator/TestAction.cpp
 		MapGenerator/TestMonster.cpp
 		MapGenerator/TestPosition.cpp
-)
+        MapGenerator/PlayerTests.cpp)
 
 target_link_libraries(${PROJECT_NAME}
         gtest_main

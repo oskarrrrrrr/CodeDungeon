@@ -31,5 +31,8 @@ void Creature::getHit(int dmg)
 	actualHealth_ -= dmg;
 }
 
-void Creature::useItem(const Item &item)
-{}
+void Creature::useItem(int item) {}
+
+void Creature::pickItem(std::unique_ptr<Item> item) {}
+
+bool Creature::canPickItem() {}

@@ -3,7 +3,7 @@
 #include <MapGenerator/Map.h>
 
 
-const std::list<Item>& Map::items() const
+const std::list<std::unique_ptr<Item>>& Map::items() const
 {
     return items_;
 }
@@ -26,7 +26,8 @@ const Terrain& Map::terrain() const
 
 void Map::addItems(const std::list<Item>& items)
 {
-    items_ = items;
+    for(auto item : items)
+        items_.emplace_back(std::make_unique<Item>(item));
 }
 
 void Map::addMonsters(const std::list<Monster>& monsters)
@@ -57,7 +58,7 @@ auto Map::getItemOnPosition(const Position& pos)
     return std::find_if(
         std::begin(items_),
         std::end(items_),
-        [pos](const Item& it){return it.position() == pos;});
+        [pos](const std::unique_ptr<Item>& it){return it->position() == pos;});
 
 }
 
@@ -77,14 +78,18 @@ void Map::makeAction(const Creature& who, Action what)
             else
             {
                 auto potential_item = getItemOnPosition(targetPosition);
-                if (potential_item->position() != std::end(items_))
+                if(potential_item != std::end(items_))
                 {
-                    player_->useItem(*potential_item);
-                    items_.erase(potential_item);
+                    if(player_->canPickItem())
+                    {
+                        player_->pickItem(std::move(*potential_item));
+                        items_.erase(potential_item);
+                        makeAction(*player_, what);
+                    }
                 }
                 else
                 {
-                    makeAction_(*(player_), what);
+                    makeAction_(*player_, what);
                 }
             }
         }
@@ -94,9 +99,12 @@ void Map::makeAction(const Creature& who, Action what)
         }
     }
     else
-        makeAction_(
-            *std::find_if(std::begin(monsters_), std::end(monsters_), [&who](const Monster& mob){return mob.id() == who.id();}),
-            what);
+    {
+        auto monsterIt = std::find_if(std::begin(monsters_), std::end(monsters_),
+                                       [&who](const Monster &mob) { return mob.id() == who.id(); });
+        if (monsterIt != std::end(monsters_))
+            makeAction_(*monsterIt, what);
+    }
 }
 
 void Map::makeAction_(Creature& who, Action what)
@@ -128,15 +136,7 @@ void Map::makeAction_(Creature& who, Action what)
 
     else if(std::holds_alternative<UseItem>(what))
     {
-        auto itemIter = std::find_if(std::begin(items_), std::end(items_), [&what](const Item& item){return item.id() == std::get<UseItem>(what).id;});
-        if(itemIter == std::end(items_))
-        {
-            throw std::logic_error("Item with Id: " + std::to_string(std::get<UseItem>(what).id) + " does not exist in item list.");
-        }
-        else
-        {
-            who.useItem(*itemIter);
-        }
+        who.useItem(std::get<UseItem>(what).id);
     }
 
 }

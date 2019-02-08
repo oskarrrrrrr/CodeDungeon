@@ -41,7 +41,7 @@ void showGameState(const Map& map)
     }
     for (const auto& item : map.items())
     {
-        auto& pos = item.position();
+        auto& pos = item->position();
         mvwaddch(stdscr, pos.row+1, pos.column, 'I');
     }
 

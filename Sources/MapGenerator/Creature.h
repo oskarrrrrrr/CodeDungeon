@@ -1,11 +1,13 @@
 #ifndef CODEDUNGEON_CREATURE_H
 #define CODEDUNGEON_CREATURE_H
 
-class Map;
+#include <memory>
 
 #include <MapGenerator/Action.h>
 #include <MapGenerator/Entity.h>
 #include "Item.h"
+
+class Map;
 
 class Creature : public Entity
 {
@@ -26,7 +28,10 @@ public:
     void makeMove(const Move& move);
     void getHit(int dmg);
 
-    virtual void useItem(const Item& item);
+    virtual void useItem(int itemId);
+
+    virtual bool canPickItem();
+    virtual void pickItem(std::unique_ptr<Item> item);
 
     virtual Action genAction(Map& map) const = 0;
 

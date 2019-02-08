@@ -14,13 +14,13 @@ int initialize()
 	initscr();
 
 	cbreak();
-	keypad(stdscr, TRUE);
+ 	keypad(stdscr, TRUE);
 	intrflush(stdscr, FALSE);
 	noecho();
 
     timeout(0); // non-blocking read
 
-    curs_set(0);
+    return curs_set(0);
 }
 
 void finalize(int curs)
