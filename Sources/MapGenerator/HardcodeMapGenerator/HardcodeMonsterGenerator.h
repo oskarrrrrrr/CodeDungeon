@@ -9,6 +9,7 @@
 
 class HardcodeMonsterGenerator : public IMonsterGenerator
 {
-
+public:
+  std::list<Monster> generate(Seed& seed, const Map& map);
 };
 #endif //CODEDUNGEON_HARDCODEMONSTERGENERATOR_H
