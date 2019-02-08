@@ -18,7 +18,9 @@ void Engine::gameStart()
 {
     for (int floor = 0; floor < maxFloors; floor++)
     {
-        Map map = mapGeneratorFactory_->createMapGenerator(HardcodeMapGeneratorTag{})->generateMap(randGen_, player_);
+        //Map map = mapGeneratorFactory_->createMapGenerator(HardcodeMapGeneratorTag{})->generateMap(randGen_, player_);
+        Map map = mapGeneratorFactory_->createMapGenerator(RandomMapGenerator1Tag{})->generateMap(randGen_, player_);
+
         bool nextFloor = false;
         while(player_->isAllive() && !nextFloor)
         {
@@ -43,5 +45,5 @@ void Engine::gameStart()
             std::this_thread::sleep_until(beginTime + std::chrono::milliseconds(roundTime));
         }
     }
-//    TODO show end screen?
+//    TODO show end screen? Yes, please.
 }
