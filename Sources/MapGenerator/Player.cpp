@@ -9,5 +9,6 @@ void Player::useItem(const Item &item)
 {
 	maxHealth_ += item.healthBuff;
 	actualHealth_ += item.healthBuff;
+	actualHealth_ %= maxHealth_;
 	attack_ += item.attackBuff;
 }

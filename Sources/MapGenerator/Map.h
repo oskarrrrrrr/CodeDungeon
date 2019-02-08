@@ -25,7 +25,8 @@ public:
     void addPlayer(PlayerShrdPtr player);
     void addTerrain(const Terrain& terrain);
 
-    bool isThereAnyMonsterOnPosition(const Position& pos);
+    auto getMonsterOnPosition(const Position& pos);
+    auto getItemOnPosition(const Position& pos);
 
     void makeAction(const Creature& who, Action what);
 

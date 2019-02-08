@@ -27,8 +27,8 @@ void showGameState(const Map& map)
 
     mvwprintw(stdscr, 0, 0, "                                         ");
 
-    mvwprintw(stdscr, 0, 5, "Attack: %d", player->attack());
-    mvwprintw(stdscr, 0, 25, "Health: %d/%d", player->actualHealth(), player->maxHealth());
+    mvwprintw(stdscr, 0, 0, "Attack: %d", player->attack());
+    mvwprintw(stdscr, 0, 16, "Health: %d/%d", player->actualHealth(), player->maxHealth());
 
 
     mvwaddstr(stdscr, 1, 0, const_cast<char*>(map.terrain().toString().c_str()) );
@@ -49,5 +49,5 @@ void showGameState(const Map& map)
     mvwaddch(stdscr, pos.row+1, pos.column, 'P');
     wmove(stdscr, pos.row+1, pos.column);
 
-    print_monsters_stats(map);
+    //print_monsters_stats(map);
 }
