@@ -70,14 +70,14 @@ void Map::makeAction(const Creature& who, Action what)
             auto move = std::get<Move>(what);
             auto targetPosition = who.position() + move.dir;
 
-            if (getMonsterOnPosition(targetPosition)->position() == targetPosition)
+            if (getMonsterOnPosition(targetPosition) != std::end(monsters_))
             {
                 makeAction_(*(player_), Attack{move.dir});
             }
             else
             {
                 auto potential_item = getItemOnPosition(targetPosition);
-                if (potential_item->position() == targetPosition)
+                if (potential_item->position() != std::end(items_))
                 {
                     player_->useItem(*potential_item);
                     items_.erase(potential_item);
