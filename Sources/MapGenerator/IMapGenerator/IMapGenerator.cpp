@@ -1,17 +1,17 @@
 #include "IMapGenerator.h"
 
 
-Map IMapGenerator::generateMap(Seed& s, PlayerShrdPtr player)
+Map IMapGenerator::generateMap(RandomGenerator& randGen, PlayerShrdPtr player)
 {
     Map m = Map();
 
-    auto terrain = terrainGenerator_->generate(s);
+    auto terrain = terrainGenerator_->generate(randGen);
     m.addTerrain(terrain);
 
-    auto items = itemGenerator_->generate(s, m);
+    auto items = itemGenerator_->generate(randGen, m);
     m.addItems(items);
 
-    auto monsters = monsterGenerator_->generate(s, m);
+    auto monsters = monsterGenerator_->generate(randGen, m);
     m.addMonsters(monsters);
 
     player->setPosition(terrain.spawnLoc());

@@ -8,17 +8,17 @@
 #include <MapGenerator/HumanPlayer.h>
 
 
-void Engine::gameInit(Seed seed)
+void Engine::gameInit(RandomGenerator randGen)
 {
     player_ = std::make_shared<HumanPlayer>();
-    seed_ = seed;
+    randGen_ = randGen;
 }
 
 void Engine::gameStart()
 {
     for (int floor = 0; floor < maxFloors; floor++)
     {
-        Map map = mapGeneratorFactory_->createMapGenerator(HardcodeMapGeneratorTag{})->generateMap(seed_, player_);
+        Map map = mapGeneratorFactory_->createMapGenerator(HardcodeMapGeneratorTag{})->generateMap(randGen_, player_);
         bool nextFloor = false;
         while(player_->isAllive() && !nextFloor)
         {

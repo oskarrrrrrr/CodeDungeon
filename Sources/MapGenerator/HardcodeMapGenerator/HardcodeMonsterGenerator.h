@@ -10,6 +10,6 @@
 class HardcodeMonsterGenerator : public IMonsterGenerator
 {
 public:
-  std::list<Monster> generate(Seed& seed, const Map& map);
+  std::list<Monster> generate(RandomGenerator& randGen, const Map& map);
 };
 #endif //CODEDUNGEON_HARDCODEMONSTERGENERATOR_H

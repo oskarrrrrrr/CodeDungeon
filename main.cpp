@@ -1,6 +1,6 @@
 #include <MapGenerator/IMapGenerator/ITerrainGenerator.h>
 #include <MapGenerator/HardcodeMapGenerator/HardcodeTerrainGenerator.h>
-#include <MapGenerator/Seed.h>
+#include <MapGenerator/RandomGenerator.h>
 #include <MapGenerator/HumanPlayer.h>
 
 #include <Engine.h>
@@ -35,7 +35,7 @@ int main()
 	int curs = initialize();
 
 	Engine engine = Engine();
-	engine.gameInit(Seed{});
+	engine.gameInit(RandomGenerator{});
 	engine.gameStart();
 
     finalize(curs);

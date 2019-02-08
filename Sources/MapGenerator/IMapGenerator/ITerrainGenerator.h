@@ -1,7 +1,7 @@
 #ifndef CODEDUNGEON_ITERRAINGENERATOR_H
 #define CODEDUNGEON_ITERRAINGENERATOR_H
 
-#include <MapGenerator/Seed.h>
+#include <MapGenerator/RandomGenerator.h>
 #include <MapGenerator/Terrain.h>
 
 class ITerrainGenerator
@@ -9,7 +9,7 @@ class ITerrainGenerator
 public:
 	ITerrainGenerator() = default;
 
-	virtual Terrain generate(Seed s) = 0;
+	virtual Terrain generate(RandomGenerator randGen) = 0;
 };
 
 

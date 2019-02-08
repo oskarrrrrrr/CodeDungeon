@@ -20,6 +20,7 @@ add_library(${PROJECT_NAME} ${${PROJECT_NAME}src_files}
         MapGenerator/Monster.cpp
         MapGenerator/Player.cpp
         MapGenerator/Position.cpp
+        MapGenerator/RandomGenerator.cpp
         MapGenerator/Terrain.cpp
 
         Engine.cpp

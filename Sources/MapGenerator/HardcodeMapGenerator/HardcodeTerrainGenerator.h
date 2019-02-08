@@ -8,7 +8,7 @@ class HardcodeTerrainGenerator : public ITerrainGenerator
 public:
     HardcodeTerrainGenerator();
 
-	Terrain generate(Seed s) override;
+	Terrain generate(RandomGenerator randGen) override;
 };
 
 

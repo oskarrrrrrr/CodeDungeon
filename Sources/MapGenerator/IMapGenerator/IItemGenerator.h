@@ -4,14 +4,14 @@
 #include <list>
 
 #include <MapGenerator/Item.h>
-#include <MapGenerator/Seed.h>
+#include <MapGenerator/RandomGenerator.h>
 #include <MapGenerator/Map.h>
 
 
 class IItemGenerator
 {
 public:
-    virtual std::list<Item> generate(Seed& seed, const Map& map) = 0;
+    virtual std::list<Item> generate(RandomGenerator& randGen, const Map& map) = 0;
 };
 
 

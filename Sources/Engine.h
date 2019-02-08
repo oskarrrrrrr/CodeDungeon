@@ -7,7 +7,7 @@
 
 #include <MapGenerator/Map.h>
 #include <MapGenerator/Player.h>
-#include <MapGenerator/Seed.h>
+#include <MapGenerator/RandomGenerator.h>
 #include <MapGenerator/MapGeneratorFactory.h>
 
 #include <memory>
@@ -18,12 +18,12 @@ class Engine
 public:
     Engine() = default;
 
-    void gameInit(Seed seed);
+    void gameInit(RandomGenerator seed);
     void gameStart();
 
 private:
     std::unique_ptr<MapGeneratorFactory> mapGeneratorFactory_;
-    Seed seed_;
+    RandomGenerator randGen_;
     PlayerShrdPtr player_;
 
     int roundTime = 100;

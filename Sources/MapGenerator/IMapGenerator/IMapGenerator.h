@@ -6,7 +6,7 @@
 #include <MapGenerator/IMapGenerator/ITerrainGenerator.h>
 
 #include <MapGenerator/Map.h>
-#include <MapGenerator/Seed.h>
+#include <MapGenerator/RandomGenerator.h>
 
 #include <memory>
 
@@ -14,7 +14,7 @@
 class IMapGenerator
 {
 public:
-	Map generateMap(Seed& s, PlayerShrdPtr player);
+	Map generateMap(RandomGenerator& randGen, PlayerShrdPtr player);
 
 protected:
     IMapGenerator(

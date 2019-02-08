@@ -4,12 +4,12 @@
 #include <list>
 
 #include <MapGenerator/Monster.h>
-#include <MapGenerator/Seed.h>
+#include <MapGenerator/RandomGenerator.h>
 
 class IMonsterGenerator
 {
 public:
-    virtual std::list<Monster> generate(Seed& seed, const Map& map) = 0;
+    virtual std::list<Monster> generate(RandomGenerator& randGen, const Map& map) = 0;
 };
 
 
