@@ -16,8 +16,10 @@ void Player::useItem(int item)
 		throw std::logic_error("Wrong item to use.");
 	}
 	auto &itemPtr = *itemIt;
+
 	maxHealth_ += itemPtr->healthBuff;
 	actualHealth_ += itemPtr->healthBuff;
+	actualHealth_ = std::min(actualHealth_ + itemPtr->healing, maxHealth_);
 	attack_ += itemPtr->attackBuff;
 
 	itemIt->reset();
@@ -36,3 +38,8 @@ void Player::pickItem(std::unique_ptr<Item> item)
 
 Action Player::genAction(Map& map) const
 {}
+
+std::string Player::getStringOfItem(size_t i)
+{
+	return items_[i] ? items_[i]->getString() : "NULL";
+}

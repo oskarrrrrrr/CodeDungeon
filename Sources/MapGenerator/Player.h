@@ -27,6 +27,7 @@ public:
 
     virtual Action genAction(Map& map) const override;
 
+    std::string getStringOfItem(size_t i);
 protected:
     std::vector<std::unique_ptr<Item>> items_;
 };
