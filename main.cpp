@@ -17,7 +17,7 @@ int initialize()
 	intrflush(stdscr, FALSE);
 	noecho();
 
-    timeout(0); // non-blocking read
+    timeout(-1); // non-blocking read
 
     return curs_set(0);
 }

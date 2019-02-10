@@ -2,19 +2,17 @@
 
 #include <MapGenerator/HumanPlayer.h>
 #include <MapGenerator/Map.h>
+#include <thread>
 
 Action HumanPlayer::genAction(Map& map) const
 {
     int c = EOF;
-    int lastKey = 0;
     Action result;
 
     while (c == EOF)
     {
         c = wgetch(stdscr);
-        lastKey = c;
     }
-    c = lastKey;
 
     switch (c) {
         case KEY_UP:
