@@ -15,7 +15,7 @@ void Engine::gameInit(RandomGenerator randGen)
 
 void Engine::gameStart()
 {
-    auto mapCreator = mapGeneratorFactory_->createMapGenerator(HardcodeMapGeneratorTag{});
+    auto mapCreator = mapGeneratorFactory_->createMapGenerator(AgentMapGeneratorTag{});
     for (int floor = 0; floor < maxFloors; floor++)
     {
         Map map = mapCreator->generateMap(randGen_, player_);
@@ -41,3 +41,5 @@ void Engine::gameStart()
     }
 //    TODO show end screen?
 }
+
+

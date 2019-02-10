@@ -10,3 +10,8 @@ std::unique_ptr<IMapGenerator> MapGeneratorFactory::createMapGenerator(HardcodeM
 {
     return std::make_unique<IMapGenerator>(HardcodeMapGenerator{});
 }
+
+std::unique_ptr<IMapGenerator> MapGeneratorFactory::createMapGenerator(AgentMapGeneratorTag)
+{
+    return std::make_unique<IMapGenerator>(AgentMapGenerator{});
+}
