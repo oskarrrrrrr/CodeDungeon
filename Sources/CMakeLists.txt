@@ -4,12 +4,6 @@ include_directories(.)
 
 file(GLOB ${PROJECT_NAME}src_files  *.cpp *.h)
 add_library(${PROJECT_NAME} ${${PROJECT_NAME}src_files}
-
-        MapGenerator/AgentMapGenerator/AgentItemGenerator.cpp
-        MapGenerator/AgentMapGenerator/AgentMapGenerator.cpp
-        MapGenerator/AgentMapGenerator/AgentMonsterGenerator.cpp
-        MapGenerator/AgentMapGenerator/AgentTerrainGenerator.cpp
-
         MapGenerator/IMapGenerator/IItemGenerator.cpp
         MapGenerator/IMapGenerator/IMapGenerator.cpp
         MapGenerator/IMapGenerator/IMonsterGenerator.cpp
