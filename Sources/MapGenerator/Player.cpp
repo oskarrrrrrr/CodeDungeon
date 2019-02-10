@@ -17,10 +17,10 @@ void Player::useItem(int item)
 	}
 	auto &itemPtr = *itemIt;
 
-	maxHealth_ += itemPtr->healthBuff;
-	actualHealth_ += itemPtr->healthBuff;
-	actualHealth_ = std::min(actualHealth_ + itemPtr->healing, maxHealth_);
-	attack_ += itemPtr->attackBuff;
+	maxHealth_ += itemPtr->healthBuff();
+	actualHealth_ += itemPtr->healthBuff();
+	actualHealth_ = std::min(actualHealth_ + itemPtr->healing(), maxHealth_);
+	attack_ += itemPtr->attackBuff();
 
 	itemIt->reset();
 }

@@ -2,5 +2,5 @@
 
 std::string Item::getString()
 {
-    return type;
+    return type_;
 }
