@@ -27,7 +27,8 @@ public:
         { return width_; }
     const Position& spawnLoc() const
         { return spawnLoc_; }
-
+    const Position& stairsLoc() const
+        { return stairsLoc_; }
     const Field& operator[](const Position& pos) const;
     Field& operator[](const Position& pos);
 
@@ -49,6 +50,7 @@ private:
     bool isSpawn_;
     bool isStairs_;
     Position spawnLoc_;
+    Position stairsLoc_;
 };
 
 

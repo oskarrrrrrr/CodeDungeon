@@ -1,4 +1,3 @@
-#include <chrono>
 #include <thread>
 
 #include <Engine.h>
@@ -16,9 +15,10 @@ void Engine::gameInit(RandomGenerator randGen)
 
 void Engine::gameStart()
 {
+    auto mapCreator = mapGeneratorFactory_->createMapGenerator(HardcodeMapGeneratorTag{});
     for (int floor = 0; floor < maxFloors; floor++)
     {
-        Map map = mapGeneratorFactory_->createMapGenerator(HardcodeMapGeneratorTag{})->generateMap(randGen_, player_);
+        Map map = mapCreator->generateMap(randGen_, player_);
         bool nextFloor = false;
         while(player_->isAllive() && !nextFloor)
         {
@@ -40,6 +40,8 @@ void Engine::gameStart()
 
             showGameState(map);
 
+            if(player_->position() == map.terrain().stairsLoc())
+                nextFloor = true;
             std::this_thread::sleep_until(beginTime + std::chrono::milliseconds(roundTime));
         }
     }

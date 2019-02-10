@@ -57,6 +57,8 @@ void Terrain::setStairs(const Position& pos)
         throw std::logic_error("Stairs has been already set");
     (*this)[pos] = Field::Stairs;
     isStairs_ = true;
+
+    stairsLoc_ = pos;
 }
 
 
