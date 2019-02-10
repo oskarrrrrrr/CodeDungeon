@@ -19,17 +19,12 @@ void Engine::gameStart()
     for (int floor = 0; floor < maxFloors; floor++)
     {
         Map map = mapCreator->generateMap(randGen_, player_);
+        showGameState(map);
         bool nextFloor = false;
         while(player_->isAllive() && !nextFloor)
         {
             auto beginTime = std::chrono::high_resolution_clock::now();
             Action m = player_->genAction(map);
-
-//            TODO if (m == goNextFloor)
-//            {
-//                nextFloor = true;
-//                continue;
-//            }
 
             map.makeAction(*(player_.get()), m);
             for (auto& mob : map.monsters())
@@ -42,7 +37,6 @@ void Engine::gameStart()
 
             if(player_->position() == map.terrain().stairsLoc())
                 nextFloor = true;
-            std::this_thread::sleep_until(beginTime + std::chrono::milliseconds(roundTime));
         }
     }
 //    TODO show end screen?

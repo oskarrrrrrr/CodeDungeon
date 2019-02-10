@@ -57,5 +57,6 @@ void showGameState(const Map& map)
     mvwaddch(stdscr, pos.row+1, pos.column, 'P');
     wmove(stdscr, pos.row+1, pos.column);
 
+    refresh();
     //print_monsters_stats(map);
 }
