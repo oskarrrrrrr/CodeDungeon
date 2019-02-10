@@ -8,7 +8,7 @@ class AgentTerrainGenerator : public ITerrainGenerator
 public:
     AgentTerrainGenerator();
 
-    Terrain generate(RandomGenerator randGen) override;
+    Terrain generate(RandomGenerator &randGen) override;
 };
 
 #endif //CODEDUNGEON_AGENTTERRAINGENERATOR_H

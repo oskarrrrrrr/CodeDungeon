@@ -20,7 +20,7 @@ void generateRoom(RandomGenerator& randGen, Terrain& t, const Position& pos)
     t.addRoom({int(pos.row - roomHeight/2), int(pos.column - roomWidth/2)}, roomHeight, roomWidth);
 }
 
-Terrain AgentTerrainGenerator::generate(RandomGenerator randGen)
+Terrain AgentTerrainGenerator::generate(RandomGenerator &randGen)
 {
     Terrain t(40, 150);
 

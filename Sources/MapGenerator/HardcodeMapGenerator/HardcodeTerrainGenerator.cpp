@@ -4,7 +4,7 @@ HardcodeTerrainGenerator::HardcodeTerrainGenerator() :
     ITerrainGenerator{}
 {}
 
-Terrain HardcodeTerrainGenerator::generate(RandomGenerator randGen)
+Terrain HardcodeTerrainGenerator::generate(RandomGenerator &randGen)
 {
     Terrain t(20, 30);
 

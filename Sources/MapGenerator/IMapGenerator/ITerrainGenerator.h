@@ -9,7 +9,7 @@ class ITerrainGenerator
 public:
 	ITerrainGenerator() = default;
 
-	virtual Terrain generate(RandomGenerator randGen) = 0;
+	virtual Terrain generate(RandomGenerator &randGen) = 0;
 };
 
 
