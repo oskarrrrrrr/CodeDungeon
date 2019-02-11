@@ -32,5 +32,5 @@ add_library(${PROJECT_NAME} ${${PROJECT_NAME}src_files}
         Engine.cpp
         PrintUtils.cpp
 
-        MapGenerator/MapGeneratorFactory.h MapGenerator/MapGeneratorFactory.cpp MapGenerator/HardcodeMapGenerator/HardcodeMapGenerator.h MapGenerator/HardcodeMapGenerator/HardcodeMapGenerator.cpp MapGenerator/HardcodeMapGenerator/HardcodeMonsterGenerator.h MapGenerator/HardcodeMapGenerator/HardcodeMonsterGenerator.cpp MapGenerator/HardcodeMapGenerator/HardcodeItemGenerator.h MapGenerator/HardcodeMapGenerator/HardcodeItemGenerator.cpp utilities/seedGenerator.h utilities/seedGenerator.cpp)
+        MapGenerator/MapGeneratorFactory.h MapGenerator/MapGeneratorFactory.cpp MapGenerator/HardcodeMapGenerator/HardcodeMapGenerator.h MapGenerator/HardcodeMapGenerator/HardcodeMapGenerator.cpp MapGenerator/HardcodeMapGenerator/HardcodeMonsterGenerator.h MapGenerator/HardcodeMapGenerator/HardcodeMonsterGenerator.cpp MapGenerator/HardcodeMapGenerator/HardcodeItemGenerator.h MapGenerator/HardcodeMapGenerator/HardcodeItemGenerator.cpp utilities/seedGenerator.h utilities/seedGenerator.cpp utilities/outputinit.h)
 
