@@ -5,6 +5,12 @@
 
 enum class Direction {UP, DOWN, LEFT, RIGHT};
 
+struct Quit
+{
+    bool operator == (const Quit& rhs) const;
+    bool operator != (const Quit& rhs) const;
+};
+
 struct Attack
 {
     Direction dir;
@@ -42,6 +48,6 @@ struct Wait
 };
 
 
-using Action = std::variant<Attack, Move, GoNextFloor, UseItem, Wait>;
+using Action = std::variant<Quit, Attack, Move, GoNextFloor, UseItem, Wait>;
 
 #endif //CODEDUNGEON_MOVE_H

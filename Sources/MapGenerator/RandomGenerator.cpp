@@ -1,8 +1,8 @@
 #include <MapGenerator/RandomGenerator.h>
 
-RandomGenerator::RandomGenerator()
-: RandomGenerator(uint64_t(std::random_device{}()) << 32 | uint64_t(std::random_device{}()))
-{}
+//RandomGenerator::RandomGenerator()
+//: RandomGenerator(uint64_t(std::random_device{}()) << 32 | uint64_t(std::random_device{}()))
+//{}
 
 RandomGenerator::RandomGenerator(uint64_t seed)
 : seed_{seed}

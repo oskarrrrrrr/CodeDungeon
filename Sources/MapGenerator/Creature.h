@@ -35,6 +35,8 @@ public:
 
     virtual Action genAction(Map& map) const = 0;
 
+    void kill();
+
 protected:
     int maxHealth_;
     int actualHealth_;

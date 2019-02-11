@@ -1,12 +1,14 @@
+#include <curses.h>
+#include <memory>
+#include <iostream>
+
 #include <MapGenerator/IMapGenerator/ITerrainGenerator.h>
 #include <MapGenerator/RandomGenerator.h>
 #include <MapGenerator/HumanPlayer.h>
 
 #include <Engine.h>
 
-#include <curses.h>
-#include <memory>
-#include <iostream>
+#include <utilities/seedGenerator.h>
 
 int initialize()
 {
@@ -29,12 +31,16 @@ void finalize(int curs)
 	endwin();
 }
 
-int main()
-{
-	int curs = initialize();
 
-	Engine engine = Engine();
-	engine.gameInit(RandomGenerator{});
+
+int main(int argc, char *argv[])
+{
+  	int curs = initialize();
+
+	RandomGenerator randGen{createSeed(argc, argv)};
+
+	Engine engine = Engine(randGen);
+
 	engine.gameStart();
 
     finalize(curs);

@@ -57,6 +57,7 @@ void showGameState(const Map& map)
     mvwaddch(stdscr, pos.row+1, pos.column, 'P');
     wmove(stdscr, pos.row+1, pos.column);
 
+    mvwaddstr(stdscr, 42, 0, "PRESS BACKSPACE TO QUIT");
     refresh();
     //print_monsters_stats(map);
 }

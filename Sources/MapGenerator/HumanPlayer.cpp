@@ -15,6 +15,9 @@ Action HumanPlayer::genAction(Map& map) const
     }
 
     switch (c) {
+        case KEY_BACKSPACE:
+            result = Quit{};
+            break;
         case KEY_UP:
             result = Move{Direction::UP};
             break;

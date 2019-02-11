@@ -6,13 +6,6 @@
 #include <MapGenerator/Action.h>
 #include <MapGenerator/HumanPlayer.h>
 
-
-void Engine::gameInit(RandomGenerator randGen)
-{
-    player_ = std::make_shared<HumanPlayer>();
-    randGen_ = randGen;
-}
-
 void Engine::gameStart()
 {
     auto mapCreator = mapGeneratorFactory_->createMapGenerator(AgentMapGeneratorTag{});

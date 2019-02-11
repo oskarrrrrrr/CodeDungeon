@@ -64,6 +64,11 @@ auto Map::getItemOnPosition(const Position& pos)
 
 void Map::makeAction(const Creature& who, Action what)
 {
+    if (std::holds_alternative<Quit>(what))
+    {
+        player_->kill();
+        return;
+    }
     if (std::holds_alternative<Move>(what)
         && terrain_[who.position() + std::get<Move>(what).dir] == Field::Wall)
         return;

@@ -35,4 +35,11 @@ void Creature::useItem(int item) {}
 
 void Creature::pickItem(std::unique_ptr<Item> item) {}
 
-bool Creature::canPickItem() {}
+bool Creature::canPickItem() {
+	return false;
+}
+
+void Creature::kill()
+{
+	actualHealth_ = 0;
+}

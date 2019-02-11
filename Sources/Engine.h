@@ -12,13 +12,14 @@
 
 #include <memory>
 #include <utility>
-
+#include <MapGenerator/HumanPlayer.h>
 class Engine
 {
 public:
-    Engine() = default;
+    Engine(RandomGenerator randGen)
+    : mapGeneratorFactory_(std::make_unique<MapGeneratorFactory>()), randGen_(randGen), player_(std::make_shared<HumanPlayer>())
+    {}
 
-    void gameInit(RandomGenerator seed);
     void gameStart();
 
 private:
@@ -26,7 +27,6 @@ private:
     RandomGenerator randGen_;
     PlayerShrdPtr player_;
 
-    int roundTime = 100;
     int maxFloors = 5;
 };
 

@@ -6,7 +6,7 @@
 class RandomGenerator
 {
 public:
-    RandomGenerator();
+    RandomGenerator() = delete;
     RandomGenerator(uint64_t seed);
 
     uint64_t seed();

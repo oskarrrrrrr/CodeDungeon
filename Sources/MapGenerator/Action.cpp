@@ -1,5 +1,15 @@
 #include <MapGenerator/Action.h>
 
+bool Quit::operator==(const Quit &rhs) const
+{
+    return true;
+}
+
+bool Quit::operator!=(const Quit &rhs) const
+{
+    return false;
+}
+
 bool Attack::operator == (const Attack& rhs) const
 {
     return dir == rhs.dir;
