@@ -4,5 +4,7 @@
 #include <MapGenerator/Map.h>
 
 void showGameState(const Map& map);
+void showGameEnd(int floor);
+bool tryGettingBackspace();
 
 #endif //CODEDUNGEON_PRINTUTILS_H

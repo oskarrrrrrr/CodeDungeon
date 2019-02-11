@@ -9,7 +9,8 @@
 void Engine::gameStart()
 {
     auto mapCreator = mapGeneratorFactory_->createMapGenerator(AgentMapGeneratorTag{});
-    for (int floor = 0; floor < maxFloors; floor++)
+    int floor = 0;
+    for (; floor < maxFloors && player_->isAllive(); floor++)
     {
         Map map = mapCreator->generateMap(randGen_, player_);
         showGameState(map);
@@ -32,7 +33,13 @@ void Engine::gameStart()
                 nextFloor = true;
         }
     }
-//    TODO show end screen?
+
+    showGameEnd(floor);
+    bool heQuit = false;
+    while(!heQuit)
+    {
+        heQuit = tryGettingBackspace();
+    }
 }
 
 

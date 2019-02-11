@@ -61,3 +61,20 @@ void showGameState(const Map& map)
     refresh();
     //print_monsters_stats(map);
 }
+
+void showGameEnd(int floor)
+{
+    werase(stdscr);
+    mvwprintw(stdscr, 0, 0, "Congrats, You beat %d levels!!", floor);
+    mvwprintw(stdscr, 1, 0, "press backspace to quit");
+}
+
+bool tryGettingBackspace()
+{
+    int c = EOF;
+    while (c == EOF)
+    {
+        c = wgetch(stdscr);
+    }
+    return c == KEY_BACKSPACE;
+}
