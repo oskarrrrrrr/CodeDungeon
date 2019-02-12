@@ -23,11 +23,17 @@ const Terrain& Map::terrain() const
     return terrain_;
 }
 
+const MaxStats& Map::max() const
+{
+    return maxStats_;
+}
 
 void Map::addItems(const std::list<Item>& items)
 {
     for(auto item : items)
+    {
         items_.emplace_back(std::make_unique<Item>(item));
+    }
 }
 
 void Map::addMonsters(const std::list<Monster>& monsters)
@@ -38,6 +44,8 @@ void Map::addMonsters(const std::list<Monster>& monsters)
 void Map::addPlayer(PlayerShrdPtr player)
 {
     player_ = player;
+    maxStats_.attack = player->attack();
+    maxStats_.health = player->maxHealth();
 }
 
 void Map::addTerrain(const Terrain& terrain)
@@ -45,7 +53,7 @@ void Map::addTerrain(const Terrain& terrain)
     terrain_ = terrain;
 }
 
-auto Map::getMonsterOnPosition(const Position& pos)
+std::list<Monster>::iterator Map::getMonsterOnPosition(const Position& pos)
 {
     return std::find_if(
         std::begin(monsters_),
@@ -53,7 +61,7 @@ auto Map::getMonsterOnPosition(const Position& pos)
         [pos](const Monster& mob){return mob.position() == pos;});
 }
 
-auto Map::getItemOnPosition(const Position& pos)
+std::list<std::unique_ptr<Item>>::iterator Map::getItemOnPosition(const Position& pos)
 {
     return std::find_if(
         std::begin(items_),
@@ -62,6 +70,14 @@ auto Map::getItemOnPosition(const Position& pos)
 
 }
 
+std::list<std::unique_ptr<Item>>::const_iterator Map::getConstItemOnPosition(const Position& pos) const
+{
+    return std::find_if(
+            std::begin(items_),
+            std::end(items_),
+            [pos](const std::unique_ptr<Item>& it){return it->position() == pos;});
+
+}
 void Map::makeAction(const Creature& who, Action what)
 {
     if (std::holds_alternative<Quit>(what))
@@ -150,5 +166,13 @@ void Map::makeAction_(Creature& who, Action what)
     {
         who.useItem(std::get<UseItem>(what).id);
     }
+}
 
+void Map::updateMaxStats()
+{
+    for(const auto& item : items_)
+    {
+        maxStats_.attack += item->attackBuff();
+        maxStats_.health += item->healthBuff();
+    }
 }
