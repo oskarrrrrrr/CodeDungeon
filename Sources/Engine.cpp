@@ -22,14 +22,15 @@ void Engine::gameStart()
             map.makeAction(*(player_.get()), m);
             for (auto& mob : map.monsters())
             {
-                Action m = mob.genAction(map);
-                map.makeAction(mob, m);
+                Action action = mob.genAction(map);
+                map.makeAction(mob, action);
             }
 
             showGameState(map);
 
             if(player_->position() == map.terrain().stairsLoc())
                 nextFloor = true;
+            player_->increaseHunger();
         }
     }
 

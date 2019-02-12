@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 {
   	int curs = initialize();
 
-	RandomGenerator randGen{createSeed(argc, argv)};
+	RandomGenerator randGen{generateOrReadFromFileSeed(argc, argv)};
 
 	std::unique_ptr<IEngine> engine = pickEngine(argc, argv, randGen);
 

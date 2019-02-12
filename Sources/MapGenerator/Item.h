@@ -10,16 +10,16 @@ class Item : public Entity
 public:
     Item() = delete;
     Item(Position pos, int healingStat, int attack, int health)
-    : Entity(pos), healing_(healingStat), attackBuff_(attack), healthBuff_(health), type_("    ")
+    : Entity(pos), healing_(healingStat), attackBuff_(attack), healthBuff_(health), food_(100), type_("    ")
     {
         if (attackBuff_ > 0)
             type_[0] = 'A';
-        if(healthBuff_ > 0)
+        if (healthBuff_ > 0)
             type_[1] = 'H';
-        if(healing_ > 0 && (attackBuff_ > 0 || healthBuff_ > 0))
-            type_[2] = '+';
         if (healing_ > 0)
-            type_[3] = 'P';
+            type_[2] = 'P';
+        if (food_ > 0)
+            type_[3] = 'F';
     }
 
     int healing()
@@ -31,6 +31,9 @@ public:
     int healthBuff()
     { return healthBuff_; }
 
+    int food()
+    { return food_; }
+
     const static char field = 'I';
 
     std::string getString();
@@ -40,6 +43,7 @@ private:
 
     int attackBuff_;
     int healthBuff_;
+    int food_;
     std::string type_;
 };
 

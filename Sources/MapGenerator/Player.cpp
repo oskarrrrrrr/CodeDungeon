@@ -22,6 +22,7 @@ void Player::useItem(int item)
 	actualHealth_ = std::min(actualHealth_ + itemPtr->healing(), maxHealth_);
 	attack_ += itemPtr->attackBuff();
 
+	hunger_ = std::max(hunger_ - itemPtr->food(), 0);
 	itemIt->reset();
 }
 
@@ -37,9 +38,27 @@ void Player::pickItem(std::unique_ptr<Item> item)
 }
 
 Action Player::genAction(const Map& map) const
-{}
+{
+    return Wait{};
+}
 
 std::string Player::getStringOfItem(size_t i)
 {
 	return items_[i] ? items_[i]->getString() : "NULL";
+}
+
+void Player::increaseHunger()
+{
+	if(hunger_ < maxHunger_) hunger_++;
+	else actualHealth_--;
+}
+
+void Player::reset()
+{
+    hunger_ = 0;
+    maxHunger_ = 200;
+    attack_ = 5;
+    actualHealth_ = 40;
+    maxHealth_ = 40;
+    pos_ = {-1,-1};
 }

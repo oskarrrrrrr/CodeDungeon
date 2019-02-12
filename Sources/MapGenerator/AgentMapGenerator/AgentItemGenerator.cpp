@@ -43,9 +43,9 @@ Item makeItem(RandomGenerator& randGen, const Position& pos)
 
     itemStrength -= healingStrength;
 
-    healthBuff = randGen.generate(0, itemStrength);
+    healthBuff = randGen.generate(0, itemStrength) * 2;
 
-    attackBuff = itemStrength - healthBuff;
+    attackBuff = (itemStrength - healthBuff) / 2;
 
     return {pos, healing, attackBuff, healthBuff};
 }

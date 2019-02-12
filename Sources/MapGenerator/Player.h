@@ -12,10 +12,13 @@ class Player : public Creature
 {
 public:
     Player()
-    : Creature({-1, -1}, 40, 5) //example values
+    : Creature({-1, -1}, 40, 5), hunger_(0), maxHunger_(200) //example values
     {
         items_.resize(10);
     }
+
+    int hunger() { return hunger_; }
+    int maxHunger() { return maxHunger_; }
 
     void setPosition(Position pos);
 
@@ -28,7 +31,14 @@ public:
     virtual Action genAction(const Map& map) const override;
 
     std::string getStringOfItem(size_t i);
+
+    void increaseHunger();
+
+    void reset();
+
 protected:
+    int hunger_;
+    int maxHunger_;
     std::vector<std::unique_ptr<Item>> items_;
 };
 

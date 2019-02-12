@@ -2,12 +2,15 @@
 // Created by dawidbarzyk on 2/12/19.
 //
 
+
 #include <thread>
 #include <future>
 #include <curses.h>
 
 #include "EngineForBots.h"
 #include <PrintUtils.h>
+#include <utilities/seedGenerator.h>
+
 
 void askForAction(std::promise<Action> * action, Map * map, std::shared_ptr<Player> player)
 {
@@ -18,7 +21,7 @@ void EngineForBots::gameStart()
 {
     for (int i = 0; i < numberOfIterations_; i++)
     {
-        uint64_t seed = uint64_t (std::random_device{}()) << 32 | uint64_t(std::random_device{}());
+        uint64_t seed = createSeed();
         randGen_ = RandomGenerator{seed};
 
         auto mapCreator = mapGeneratorFactory_->createMapGenerator(AgentMapGeneratorTag{});
@@ -53,6 +56,8 @@ void EngineForBots::gameStart()
 
                 if(player_->position() == map.terrain().stairsLoc())
                     nextFloor = true;
+
+                player_->increaseHunger();
             }
         }
         mvwprintw(stdscr, i, 0, "%d bot on map with seed %d survived %d floors.", i, seed, floor);

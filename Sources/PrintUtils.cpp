@@ -29,15 +29,16 @@ void showGameState(const Map& map)
 {
     const auto& player = map.player();
 
-    mvwprintw(stdscr, 0, 0, "                                         ");
+    mvwprintw(stdscr, 0, 0, "                                                                                  ");
 
     mvwprintw(stdscr, 0, 0, "Attack: %d", player->attack());
     mvwprintw(stdscr, 0, 16, "Health: %d/%d", player->actualHealth(), player->maxHealth());
+    mvwprintw(stdscr, 0, 32, "Hunger: %d/%d", player->hunger(), player->maxHunger());
     std::string preparedItemsLine = "Items:  [0] " + player->getStringOfItem(0) + " [1] " + player->getStringOfItem(1) +
         " [2] " + player->getStringOfItem(2) + " [3] " + player->getStringOfItem(3) + " [4] " + player->getStringOfItem(4) +
         " [5] " + player->getStringOfItem(5) + " [6] " + player->getStringOfItem(6) + " [7] " + player->getStringOfItem(7) +
         " [8] " + player->getStringOfItem(8) + " [9] " + player->getStringOfItem(9);
-    mvwprintw(stdscr, 0, 32, preparedItemsLine.c_str());
+    mvwprintw(stdscr, 0, 48, preparedItemsLine.c_str());
 
     mvwaddstr(stdscr, 1, 0, const_cast<char*>(map.terrain().toString().c_str()) );
 
