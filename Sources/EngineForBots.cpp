@@ -23,6 +23,7 @@ void EngineForBots::gameStart()
     {
         uint64_t seed = createSeed();
         randGen_ = RandomGenerator{seed};
+        player_->reset();
 
         auto mapCreator = mapGeneratorFactory_->createMapGenerator(AgentMapGeneratorTag{});
         int floor = 0;
@@ -60,7 +61,7 @@ void EngineForBots::gameStart()
                 player_->increaseHunger();
             }
         }
-        mvwprintw(stdscr, i, 0, "%d bot on map with seed %d survived %d floors.", i, seed, floor);
+        mvwprintw(stdscr, i, 0, "%d bot on map with seed %llu survived %d floors.", i, seed, floor);
         wrefresh(stdscr);
     }
 
