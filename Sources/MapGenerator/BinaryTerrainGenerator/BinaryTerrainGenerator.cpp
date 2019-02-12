@@ -1,4 +1,8 @@
 #include <MapGenerator/BinaryTerrainGenerator/BinaryTerrainGenerator.h>
+#include <MapGenerator/BinaryTerrainGenerator/BSP.h>
+
+const int TERRAIN_HEIGHT = 60;
+const int TERRAIN_WIDTH = 100;
 
 BinaryTerrainGenerator::BinaryTerrainGenerator() :
     ITerrainGenerator{}
@@ -6,24 +10,15 @@ BinaryTerrainGenerator::BinaryTerrainGenerator() :
 
 Terrain BinaryTerrainGenerator::generate(RandomGenerator randGen)
 {
-    Terrain t(30, 30);
+    BSP bsp_tree({0,0}, {TERRAIN_HEIGHT-1, TERRAIN_WIDTH - 1});
+    bsp_tree.split(randGen);
 
-    t.addRoom({1, 1}, 4, 5);
-    t.addRoom({9, 3}, 7, 8);
-    t.addCorridor({5, 4}, 4, false);
+    Terrain t(TERRAIN_HEIGHT, TERRAIN_WIDTH);
 
-    t.addRoom({2, 20}, 8, 7);
-    t.addRoom({1, 10}, 4, 7);
-    t.addCorridor({3, 17}, 3, true);
-    t.addRoom({15, 18}, 3, 7);
-    t.addCorridor({10, 23}, 5, false);
-
-    t.addCorridor({6, 4}, 12, true);
-    t.addCorridor({6, 16}, 6, false);
-    t.addCorridor({12, 16}, 8, true);
-
-    t.setSpawn({2, 12});
-    t.setStairs({13, 7});
+    bsp_tree.draw_rooms(t);
+    bsp_tree.add_corridors(t);
+    bsp_tree.add_spawn(t, randGen);
+    bsp_tree.add_stairs(t, randGen);
 
     return t;
 }

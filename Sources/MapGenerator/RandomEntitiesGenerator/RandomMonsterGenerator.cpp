@@ -4,9 +4,7 @@ std::list<Monster> RandomMonsterGenerator::generate(RandomGenerator& randGen, co
 {
   std::list<Monster> resultMonsters;
 
-  resultMonsters.emplace_back(Position(4,4), 1, 2);
-  resultMonsters.emplace_back(Position(9,4), 1, 1);
-  resultMonsters.emplace_back(Position(3,20), 1, 4);
+  // TODO
 
   return resultMonsters;
 }

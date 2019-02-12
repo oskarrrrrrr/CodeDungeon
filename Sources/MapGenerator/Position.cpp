@@ -28,3 +28,8 @@ Position Position::operator + (const Direction& rhs) const
     newPos += rhs;
     return newPos;
 }
+
+std::ostream &operator << (std::ostream &os, Position const &p)
+{
+    return os << "(" << p.row << ", " << p.column << ")";
+}

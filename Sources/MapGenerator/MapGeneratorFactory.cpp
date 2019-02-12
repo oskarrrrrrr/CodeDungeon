@@ -4,12 +4,10 @@
 
 #include "MapGeneratorFactory.h"
 
-/*
 std::unique_ptr<IMapGenerator> MapGeneratorFactory::createMapGenerator(HardcodeMapGeneratorTag)
 {
     return std::make_unique<IMapGenerator>(HardcodeMapGenerator{});
 }
-*/
 
 std::unique_ptr<IMapGenerator> MapGeneratorFactory::createMapGenerator(RandomMapGenerator1Tag)
 {

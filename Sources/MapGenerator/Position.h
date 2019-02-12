@@ -2,6 +2,7 @@
 #define CODEDUNGEON_POSITION_H
 
 #include <MapGenerator/Action.h>
+#include <ostream>
 
 struct Position
 {
@@ -18,6 +19,9 @@ struct Position
     bool operator != (const Position& rhs) const;
     void operator += (const Direction& rhs);
     Position operator + (const Direction& rhs) const;
+
 };
+
+std::ostream &operator<<(std::ostream &os, Position const &p);
 
 #endif //CODEDUNGEON_POSITION_H

@@ -26,5 +26,10 @@ add_library(${PROJECT_NAME} ${${PROJECT_NAME}src_files}
         Engine.cpp
         PrintUtils.cpp
 
-        MapGenerator/MapGeneratorFactory.h MapGenerator/MapGeneratorFactory.cpp MapGenerator/HardcodeMapGenerator/HardcodeMapGenerator.h MapGenerator/HardcodeMapGenerator/HardcodeMapGenerator.cpp MapGenerator/HardcodeMapGenerator/HardcodeMonsterGenerator.h MapGenerator/HardcodeMapGenerator/HardcodeMonsterGenerator.cpp MapGenerator/HardcodeMapGenerator/HardcodeItemGenerator.h MapGenerator/HardcodeMapGenerator/HardcodeItemGenerator.cpp)
+        MapGenerator/RandomMapGenerator1/RandomMapGenerator1.cpp
+        MapGenerator/BinaryTerrainGenerator/BinaryTerrainGenerator.cpp
+        MapGenerator/BinaryTerrainGenerator/BSP.cpp
+        MapGenerator/RandomEntitiesGenerator/RandomItemGenerator.cpp
+        MapGenerator/RandomEntitiesGenerator/RandomMonsterGenerator.cpp
 
+        MapGenerator/MapGeneratorFactory.h MapGenerator/MapGeneratorFactory.cpp MapGenerator/HardcodeMapGenerator/HardcodeMapGenerator.h MapGenerator/HardcodeMapGenerator/HardcodeMapGenerator.cpp MapGenerator/HardcodeMapGenerator/HardcodeMonsterGenerator.h MapGenerator/HardcodeMapGenerator/HardcodeMonsterGenerator.cpp MapGenerator/HardcodeMapGenerator/HardcodeItemGenerator.h MapGenerator/HardcodeMapGenerator/HardcodeItemGenerator.cpp)
