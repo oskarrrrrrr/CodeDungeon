@@ -11,6 +11,7 @@
 
 #include <MapGenerator/AgentMapGenerator/AgentMapGenerator.h>
 #include <MapGenerator/HardcodeMapGenerator/HardcodeMapGenerator.h>
+#include <MapGenerator/RandomMapGenerator1/RandomMapGenerator1.h>
 
 
 class MapGeneratorFactory
@@ -18,5 +19,6 @@ class MapGeneratorFactory
 public:
     std::unique_ptr<IMapGenerator> createMapGenerator(HardcodeMapGeneratorTag);
     std::unique_ptr<IMapGenerator> createMapGenerator(AgentMapGeneratorTag);
+    std::unique_ptr<IMapGenerator> createMapGenerator(RandomMapGenerator1Tag);
 };
 #endif //CODEDUNGEON_MAPGENERATORFACTORY_H

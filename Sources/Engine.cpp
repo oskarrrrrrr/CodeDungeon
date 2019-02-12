@@ -8,7 +8,8 @@
 
 void Engine::gameStart()
 {
-    auto mapCreator = mapGeneratorFactory_->createMapGenerator(AgentMapGeneratorTag{});
+    //auto mapCreator = mapGeneratorFactory_->createMapGenerator(AgentMapGeneratorTag{});
+    auto mapCreator = mapGeneratorFactory_->createMapGenerator(RandomMapGenerator1Tag{});
     int floor = 0;
     for (; floor < maxFloors && player_->isAllive(); floor++)
     {
@@ -41,5 +42,3 @@ void Engine::gameStart()
         heQuit = tryGettingBackspace();
     }
 }
-
-
