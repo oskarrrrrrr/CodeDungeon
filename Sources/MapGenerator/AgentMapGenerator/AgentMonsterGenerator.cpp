@@ -17,29 +17,26 @@ bool isFieldValid(const Position& coords, const Map& map, const std::vector<Posi
         && std::find(std::cbegin(takenFields), std::cend(takenFields), coords) == std::cend(takenFields);
 }
 
-Position getAnythingFreeAround(const Item& item, const Map& map, const std::vector<Position>& takenFields)
+Position getAnythingFreeAround(RandomGenerator& randGen, const Item& item, const Map& map, const std::vector<Position>& takenFields)
 {
     Position mid = item.position();
-
-    for (int i = -1; i <= 1; ++i)
+    std::vector<Position> availablePositions;
+    for (auto maybeGood : std::vector<Position>{mid + Direction::UP, mid + Direction::DOWN, mid + Direction::LEFT, mid + Direction::RIGHT})
     {
-        for (int j = -1; j <= 1; ++j)
+        if (isFieldValid(maybeGood, map, takenFields))
         {
-            Position maybeGood{mid.row+i, mid.column+j};
-            if (isFieldValid(maybeGood, map, takenFields))
-            {
-                return maybeGood;
-            }
+            availablePositions.push_back(maybeGood);
         }
     }
+    return availablePositions[randGen.generate(0,availablePositions.size()-1)];
 }
 
-std::vector<Position> preparePositionsForMonsters(const Map& map)
+std::vector<Position> preparePositionsForMonsters(RandomGenerator& randGen, const Map& map)
 {
     std::vector<Position> result;
     for (const auto& itemUnique : map.items())
     {
-        result.push_back(getAnythingFreeAround(*itemUnique, map, result));
+        result.push_back(getAnythingFreeAround(randGen, *itemUnique, map, result));
     }
     return result;
 }
@@ -61,17 +58,11 @@ std::list<Monster> createRandomMonsters(RandomGenerator& randGen, const std::vec
     return monsters;
 }
 
-void pickMonsters(std::list<Monster>& monsters, MaxStatsPlayer player)
-{
-
-}
-
 std::list<Monster> AgentMonsterGenerator::generate(RandomGenerator& randGen, const Map& map)
 {
     MaxStatsPlayer player{map.max().attack, map.max().health};
 
-    std::list<Monster> monsters = createRandomMonsters(randGen, preparePositionsForMonsters(map), player);
-
-
+    std::list<Monster> monsters = createRandomMonsters(randGen, preparePositionsForMonsters(randGen, map), player);
+    
     return monsters;
 }
