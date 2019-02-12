@@ -4,7 +4,7 @@
 #include <MapGenerator/Map.h>
 #include <thread>
 
-Action HumanPlayer::genAction(Map& map) const
+Action HumanPlayer::genAction(const Map& map) const
 {
     int c = EOF;
     Action result;

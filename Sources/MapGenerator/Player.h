@@ -25,7 +25,7 @@ public:
 
     void pickItem(std::unique_ptr<Item> item) override;
 
-    virtual Action genAction(Map& map) const override;
+    virtual Action genAction(const Map& map) const override;
 
     std::string getStringOfItem(size_t i);
 protected:

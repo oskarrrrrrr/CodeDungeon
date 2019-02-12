@@ -63,6 +63,6 @@ std::list<Monster> AgentMonsterGenerator::generate(RandomGenerator& randGen, con
     MaxStatsPlayer player{map.max().attack, map.max().health};
 
     std::list<Monster> monsters = createRandomMonsters(randGen, preparePositionsForMonsters(randGen, map), player);
-    
+
     return monsters;
 }

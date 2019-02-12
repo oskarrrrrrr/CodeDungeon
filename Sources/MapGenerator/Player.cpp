@@ -36,7 +36,7 @@ void Player::pickItem(std::unique_ptr<Item> item)
 	*freeSlot = std::move(item);
 }
 
-Action Player::genAction(Map& map) const
+Action Player::genAction(const Map& map) const
 {}
 
 std::string Player::getStringOfItem(size_t i)

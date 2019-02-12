@@ -2,29 +2,30 @@
 #define CODEDUNGEON_ENGINE_H
 
 #include <chrono>
+#include <memory>
+#include <utility>
 
 #include <MapGenerator/IMapGenerator/IMapGenerator.h>
-
 #include <MapGenerator/Map.h>
 #include <MapGenerator/Player.h>
 #include <MapGenerator/RandomGenerator.h>
 #include <MapGenerator/MapGeneratorFactory.h>
-
-#include <memory>
-#include <utility>
 #include <MapGenerator/HumanPlayer.h>
-class Engine
+
+#include "IEngine.h"
+
+class Engine : public IEngine
 {
 public:
-    Engine(RandomGenerator randGen)
+    explicit Engine(RandomGenerator& randGen)
     : mapGeneratorFactory_(std::make_unique<MapGeneratorFactory>()), randGen_(randGen), player_(std::make_shared<HumanPlayer>())
     {}
 
-    void gameStart();
+    void gameStart() override;
 
 private:
     std::unique_ptr<MapGeneratorFactory> mapGeneratorFactory_;
-    RandomGenerator randGen_;
+    RandomGenerator& randGen_;
     PlayerShrdPtr player_;
 
     int maxFloors = 5;

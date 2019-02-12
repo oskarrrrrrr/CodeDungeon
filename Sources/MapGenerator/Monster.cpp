@@ -3,7 +3,7 @@
 #include <MapGenerator/Monster.h>
 #include <MapGenerator/Position.h>
 
-Action Monster::genAction(Map& map) const
+Action Monster::genAction(const Map& map) const
 {
     const auto& playerPosition = map.player()->position();
 

@@ -4,6 +4,7 @@
 
 #include <utilities/seedGenerator.h>
 #include <utilities/outputinit.h>
+#include <utilities/EngineSelector.h>
 
 
 int main(int argc, char *argv[])
@@ -12,9 +13,9 @@ int main(int argc, char *argv[])
 
 	RandomGenerator randGen{createSeed(argc, argv)};
 
-	Engine engine = Engine(randGen);
+	std::unique_ptr<IEngine> engine = pickEngine(argc, argv, randGen);
 
-	engine.gameStart();
+	engine->gameStart();
 
     finalize(curs);
 

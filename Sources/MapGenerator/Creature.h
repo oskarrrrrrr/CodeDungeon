@@ -33,7 +33,7 @@ public:
     virtual bool canPickItem();
     virtual void pickItem(std::unique_ptr<Item> item);
 
-    virtual Action genAction(Map& map) const = 0;
+    virtual Action genAction(const Map& map) const = 0;
 
     void kill();
 

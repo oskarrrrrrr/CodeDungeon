@@ -17,7 +17,6 @@ void Engine::gameStart()
         bool nextFloor = false;
         while(player_->isAllive() && !nextFloor)
         {
-            auto beginTime = std::chrono::high_resolution_clock::now();
             Action m = player_->genAction(map);
 
             map.makeAction(*(player_.get()), m);
