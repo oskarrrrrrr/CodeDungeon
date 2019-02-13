@@ -6,10 +6,9 @@
 #include <MapGenerator/Action.h>
 #include <MapGenerator/HumanPlayer.h>
 
-void Engine::gameStart()
+void Engine::gameStart(MapGeneratorTag tag)
 {
-    //auto mapCreator = mapGeneratorFactory_->createMapGenerator(AgentMapGeneratorTag{});
-    auto mapCreator = mapGeneratorFactory_->createMapGenerator(RandomMapGenerator1Tag{});
+    auto mapCreator = std::visit(*mapGeneratorFactory_, tag);
     int floor = 0;
     for (; floor < maxFloors && player_->isAllive(); floor++)
     {

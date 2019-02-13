@@ -36,4 +36,7 @@ add_library(${PROJECT_NAME} ${${PROJECT_NAME}src_files}
 
         MapGenerator/RandomMapGenerator1/RandomMapGenerator1.cpp
         MapGenerator/BinaryTerrainGenerator/BinaryTerrainGenerator.cpp
-        MapGenerator/BinaryTerrainGenerator/BSP.cpp)
+        MapGenerator/BinaryTerrainGenerator/BSP.cpp
+
+        utilities/utilities.cpp
+)

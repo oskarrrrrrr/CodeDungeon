@@ -17,7 +17,7 @@ void askForAction(std::promise<Action> * action, Map * map, std::shared_ptr<Play
     action->set_value(player->genAction(*map));
 }
 
-void EngineForBots::gameStart()
+void EngineForBots::gameStart(MapGeneratorTag tag)
 {
     for (int i = 0; i < numberOfIterations_; i++)
     {
@@ -25,7 +25,8 @@ void EngineForBots::gameStart()
         randGen_ = RandomGenerator{seed};
         player_->reset();
 
-        auto mapCreator = mapGeneratorFactory_->createMapGenerator(AgentMapGeneratorTag{});
+        auto mapCreator = std::visit(*mapGeneratorFactory_, tag);
+        // auto mapCreator = mapGeneratorFactory_->createMapGenerator(tag);
         int floor = 0;
         for (; floor < maxFloors && player_->isAllive(); floor++)
         {

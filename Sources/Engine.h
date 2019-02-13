@@ -21,7 +21,7 @@ public:
     : mapGeneratorFactory_(std::make_unique<MapGeneratorFactory>()), randGen_(randGen), player_(std::make_shared<HumanPlayer>())
     {}
 
-    void gameStart() override;
+    void gameStart(MapGeneratorTag tag) override;
 
 private:
     std::unique_ptr<MapGeneratorFactory> mapGeneratorFactory_;

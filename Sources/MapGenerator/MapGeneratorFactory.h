@@ -13,12 +13,13 @@
 #include <MapGenerator/HardcodeMapGenerator/HardcodeMapGenerator.h>
 #include <MapGenerator/RandomMapGenerator1/RandomMapGenerator1.h>
 
+using MapGeneratorTag = std::variant<HardcodeMapGeneratorTag, AgentMapGeneratorTag, RandomMapGenerator1Tag>;
 
 class MapGeneratorFactory
 {
 public:
-    std::unique_ptr<IMapGenerator> createMapGenerator(HardcodeMapGeneratorTag);
-    std::unique_ptr<IMapGenerator> createMapGenerator(AgentMapGeneratorTag);
-    std::unique_ptr<IMapGenerator> createMapGenerator(RandomMapGenerator1Tag);
+    std::unique_ptr<IMapGenerator> operator()(HardcodeMapGeneratorTag);
+    std::unique_ptr<IMapGenerator> operator()(AgentMapGeneratorTag);
+    std::unique_ptr<IMapGenerator> operator()(RandomMapGenerator1Tag);
 };
 #endif //CODEDUNGEON_MAPGENERATORFACTORY_H

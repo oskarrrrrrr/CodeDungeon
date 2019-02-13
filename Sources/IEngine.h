@@ -8,6 +8,6 @@
 class IEngine
 {
 public:
-    virtual void gameStart() = 0;
+    virtual void gameStart(MapGeneratorTag tag) = 0;
 };
 #endif //CODEDUNGEON_IENGINE_H
